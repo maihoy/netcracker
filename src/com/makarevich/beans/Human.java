@@ -1,4 +1,4 @@
-package com.makarevich;
+package com.makarevich.beans;
 
 import java.util.Calendar;
 

@@ -1,4 +1,4 @@
-package com.makarevich;
+package com.makarevich.beans;
 
 import com.makarevich.enums.Rating;
 

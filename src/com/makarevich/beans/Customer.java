@@ -1,4 +1,4 @@
-package com.makarevich;
+package com.makarevich.beans;
 
 import java.util.Calendar;
 
@@ -8,6 +8,7 @@ import java.util.Calendar;
 public class Customer extends Human {
 
     private float money;
+    private Order order;
 
     public float getMoney() {
         return money;
@@ -15,6 +16,14 @@ public class Customer extends Human {
 
     public void setMoney(float money) {
         this.money = money;
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public Customer(String firstName, String lastName,

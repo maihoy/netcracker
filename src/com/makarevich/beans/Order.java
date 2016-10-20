@@ -1,4 +1,4 @@
-package com.makarevich;
+package com.makarevich.beans;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import java.util.List;
  * Created by j on 19.10.16.
  */
 public class Order {
-    public   List<Order> orderList ;
+    public List<Order> orderList ;
 
     public List<Order> getOrderList() {
         return orderList;

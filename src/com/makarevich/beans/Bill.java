@@ -1,4 +1,6 @@
-package com.makarevich;
+package com.makarevich.beans;
+
+import java.util.ListIterator;
 
 /**
  * Created by j on 19.10.16.
@@ -25,14 +27,6 @@ public class Bill extends Order {
         this.waiter = waiter;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
     public float getBill() {
         return bill;
     }
@@ -42,8 +36,9 @@ public class Bill extends Order {
     }
 
     public float calcBill(){
-        for (Order order: orderList) {
-          //  bill+=orderList.listIterator()
+        ListIterator<Order> lit =orderList.listIterator();
+        while (lit.hasNext()){
+           // bill =lit.next().orderList
         }
         return bill;
     }

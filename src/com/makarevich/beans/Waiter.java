@@ -1,4 +1,4 @@
-package com.makarevich;
+package com.makarevich.beans;
 
 import java.util.Calendar;
 
@@ -34,4 +34,7 @@ public class Waiter extends Human {
         this.experiance= experiance;
     }
 
+    public void takeOrder(){
+
+    }
 }
