@@ -33,7 +33,7 @@ public class Initialization {
 
                     switch (Operations.inputNum()){
                         case 1:
-                            System.out
+                           //System.out
                     }
 
                 case 0:
