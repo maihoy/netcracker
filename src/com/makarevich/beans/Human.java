@@ -1,14 +1,14 @@
 package com.makarevich.beans;
 
-import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * Created by j on 19.10.16.
  */
-public class Human {
+public abstract class Human {
     protected String firstName;
     protected String lastName;
-    protected Calendar birthDate;
+    protected GregorianCalendar birthDate;
 
 
     public String getFirstName() {
@@ -27,11 +27,11 @@ public class Human {
         this.lastName = lastName;
     }
 
-    public Calendar getBirthDate() {
+    public GregorianCalendar getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Calendar birthDate) {
+    public void setBirthDate(GregorianCalendar birthDate) {
         this.birthDate = birthDate;
     }
 

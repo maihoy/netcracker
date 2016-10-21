@@ -1,12 +1,19 @@
 package com.makarevich.beans;
 
-import java.util.Calendar;
+
+import com.makarevich.tools.Initialisation;
+import com.makarevich.tools.Operations;
+
+import java.util.GregorianCalendar;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by j on 19.10.16.
  */
-public class Customer extends Human {
+public class Customer extends Human implements User{
 
+    private Map<Integer,String> abilities = new HashMap<Integer,String>();
     private float money;
     private Order order;
 
@@ -27,10 +34,36 @@ public class Customer extends Human {
     }
 
     public Customer(String firstName, String lastName,
-                    Calendar birthDate, float money) {
+                    GregorianCalendar birthDate, float money) {
         this.firstName = firstName;
         this.lastName =lastName;
         this.birthDate= birthDate;
         this.money= money;
+        this.abilities.put(1,"Create order");
+        this.abilities.put(2,"Pay");
+    }
+    @Override
+    public void showAbilities() {
+        for (Map.Entry<Integer,String> entry: abilities.entrySet()) {
+            System.out.println(entry.getKey()+". "+entry.getValue());
+        }
+    }
+
+    @Override
+    public void executeAbility(int indexOfAbility) {
+        if(indexOfAbility==1){
+            try {
+                int numOfDish = Operations.input.nextInt();
+                Order newOrder = new Order();
+                newOrder.orderList.add(numOfDish,newOrder);
+
+            }
+            catch (NullPointerException e){
+                System.out.println("No orders");
+            }
+        }
+        if (indexOfAbility==2){
+
+        }
     }
 }

@@ -1,8 +1,10 @@
 package com.makarevich.beans;
 
+import com.makarevich.enums.MenuItems;
 import com.makarevich.enums.Rating;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -12,14 +14,19 @@ public class Restaurant {
 
     private String name;
     private Rating rating;
-    private Menu menu;
+    private List<MenuItems> menu;
     private Set waiters = new HashSet();
 
-    public Menu getMenu() {
+    public Restaurant(String name, Rating rating,
+                      List<MenuItems> menu) {
+
+    }
+
+    public List<MenuItems> getMenu() {
         return menu;
     }
 
-    public void setMenu(Menu menu) {
+    public void setMenu(List<MenuItems> menu) {
         this.menu = menu;
     }
 

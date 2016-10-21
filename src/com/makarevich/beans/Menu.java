@@ -12,13 +12,25 @@ import java.util.List;
  */
 public class Menu {
 
-    List<MenuItems> positions= new ArrayList<MenuItems>(EnumSet.allOf(MenuItems.class));
+    static List<MenuItems> positions= new ArrayList<MenuItems>(EnumSet.allOf(MenuItems.class));
 
-    public List<MenuItems> getPositions() {
+    public static List<MenuItems> getPositions() {
         return positions;
     }
 
     public void setPositions(List<MenuItems> positions) {
         this.positions = positions;
+    }
+
+
+
+    public static void viewMenu(){
+        int posCount = Menu.getPositions().size();
+        posCount--;
+        int i=0;
+        while (i<= posCount) {
+            System.out.println(i+". "+Menu.getPositions().get(i).getName()+" "+Menu.getPositions().get(i).getCost()+"$");
+            i++;
+        }
     }
 }

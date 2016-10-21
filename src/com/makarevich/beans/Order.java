@@ -1,5 +1,6 @@
 package com.makarevich.beans;
 
+import java.awt.*;
 import java.util.List;
 
 /**
@@ -16,6 +17,10 @@ public class Order {
         this.orderList = orderList;
     }
 
+    public void addOrderItem(int indexOfItem ){
+
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -25,10 +30,16 @@ public class Order {
 
         return orderList != null ? orderList.equals(order.orderList) : order.orderList == null;
 
+
     }
 
     @Override
     public int hashCode() {
         return orderList != null ? orderList.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Order:" +getOrderList();
     }
 }
