@@ -1,12 +1,15 @@
 package com.makarevich.beans;
 
 import java.awt.*;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by j on 19.10.16.
  */
-public class Order {
+public class Order implements User{
+    private Map<Integer,String> abilities = new HashMap<Integer,String>();
     public List<Order> orderList ;
 
     public List<Order> getOrderList() {
@@ -19,6 +22,11 @@ public class Order {
 
     public void addOrderItem(int indexOfItem ){
 
+    }
+
+    public Order() {
+        this.orderList = orderList;
+        this.abilities.put(1,"Show menu");
     }
 
     @Override
@@ -41,5 +49,18 @@ public class Order {
     @Override
     public String toString() {
         return "Order:" +getOrderList();
+    }
+
+    @Override
+    public void showAbilities() {
+        for (Map.Entry<Integer,String> entry: abilities.entrySet()) {
+            System.out.println(entry.getKey()+". "+entry.getValue());
+        }
+
+    }
+
+    @Override
+    public void executeAbility(int indexOfAbility) {
+
     }
 }

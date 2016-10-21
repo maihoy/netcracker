@@ -42,6 +42,11 @@ public class Customer extends Human implements User{
         this.abilities.put(1,"Create order");
         this.abilities.put(2,"Pay");
     }
+
+    private void createOrdedr(){
+
+    }
+
     @Override
     public void showAbilities() {
         for (Map.Entry<Integer,String> entry: abilities.entrySet()) {
@@ -53,9 +58,8 @@ public class Customer extends Human implements User{
     public void executeAbility(int indexOfAbility) {
         if(indexOfAbility==1){
             try {
-                int numOfDish = Operations.input.nextInt();
-                Order newOrder = new Order();
-                newOrder.orderList.add(numOfDish,newOrder);
+                createOrdedr();
+               // Initialisation.newtStep(newOrder);
 
             }
             catch (NullPointerException e){
