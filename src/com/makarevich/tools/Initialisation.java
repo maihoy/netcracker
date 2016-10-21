@@ -16,7 +16,7 @@ public class Initialisation {
 
     }
 
-    private User  currentUser;
+    private static User  currentUser;
 
     public  static Manager createManager(){
         Manager manager1 = new Manager("Imja","Familija",new GregorianCalendar(1976,3,12));
@@ -35,75 +35,46 @@ public class Initialisation {
         Customer customer1 = new Customer("Piter","Parker",new GregorianCalendar(1989,Calendar.MARCH,6),(float) 195.7);
         return customer1;
     }
-    public  static void menu(){
-        createRestaurant();
 
-        createCustomer();
-        while (true){
+    public static void newtStep(User currentUser){
 
-            System.out.println("1. Waiter");
-            System.out.println("2. Customer");
-            System.out.println("3. Manager");
-            System.out.println("0. Exit");
-            back:
-            switch (Operations.inputNum()){
-                case 1:
+        while(true){
 
-                    while (true){
-                        User currentUser= createWaiter();
-                        currentUser.showAbilities();
-                        System.out.println("0. Back");
-
-                        switch (Operations.inputNum()){
-                            case 1:
-                                currentUser.executeAbility(1);
-                                break ;
-                            case 2:
-                                currentUser.executeAbility(2);
-                                break ;
-                            case 0:
-                                break back;
-                        }
-                    }
-                case 2:
-                    while (true) {
-                        User currentUser = createCustomer();
-                        currentUser.showAbilities();
-                        System.out.println("0. Back");
-
-                        switch (Operations.inputNum()) {
-                            case 1:
-                                Menu.viewMenu();
-                                break;
-                            case 2:
-                                System.out.println(42);
-                                break;
-                            case 0:
-                                break back;
-                        }
-                    }
-
-                case 3:
-                    while (true) {
-                        User currentUser = createManager();
-                        currentUser.showAbilities();
-                        System.out.println("0. Back");
-
-                        switch (Operations.inputNum()){
-                            case 1:
-                                currentUser.executeAbility(1);
-                                break ;
-                            case 0:
-                        }
-                    }
-                case 0:
-                    System.out.println("Finished!");
-                    System.exit(0);
-
-                default:
-                    System.out.println("Try again...");
-
+            currentUser.showAbilities();
+            System.out.println("0. Back");
+            int answer = Operations.inputNum();
+            if(answer == 0){
+                break;
+            }else{
+                currentUser.executeAbility(answer );
             }
         }
+    }
+
+    public  static void menu(){
+
+        System.out.println("1. Waiter");
+        System.out.println("2. Customer");
+        System.out.println("3. Manager");
+        System.out.println("0. Exit");
+        switch (Operations.inputNum()){
+
+            case 1:
+                newtStep(createWaiter());
+                break;
+            case 2:
+                newtStep(createCustomer());
+                break;
+            case 3:
+                newtStep(createManager());
+                break;
+            case 0:
+                System.out.println("Finished!");
+                System.exit(0);
+            default:
+                System.out.println("Try again...");
+        }
+
+
     }
 }

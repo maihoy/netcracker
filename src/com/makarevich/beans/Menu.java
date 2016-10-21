@@ -28,7 +28,9 @@ public class Menu {
         int posCount = Menu.getPositions().size();
         posCount--;
         int i=0;
+
         while (i<= posCount) {
+
             System.out.println(i+". "+Menu.getPositions().get(i).getName()+" "+Menu.getPositions().get(i).getCost()+"$");
             i++;
         }
