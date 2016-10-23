@@ -1,14 +1,11 @@
 package com.makarevich.tools;
 
 import com.makarevich.beans.*;
-import com.makarevich.enums.MenuItems;
 import com.makarevich.enums.Rating;
 
 import java.util.*;
 
-/**
- * Created by j on 20.10.16.
- */
+
 public class Initialisation {
     public static List<Order> orders;
 

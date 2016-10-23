@@ -1,9 +1,6 @@
 package com.makarevich.beans;
 
 
-import com.makarevich.tools.Initialisation;
-import com.makarevich.tools.Operations;
-
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -11,7 +8,7 @@ import java.util.Map;
 /**
  * Created by j on 19.10.16.
  */
-public class Customer extends Human implements User{
+public class Customer extends Person implements User{
 
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
     private float money;
@@ -43,7 +40,7 @@ public class Customer extends Human implements User{
         this.abilities.put(2,"Pay");
     }
 
-    private void createOrdedr(){
+    private void createOrder(){
 
     }
 
@@ -58,8 +55,9 @@ public class Customer extends Human implements User{
     public void executeAbility(int indexOfAbility) {
         if(indexOfAbility==1){
             try {
-                createOrdedr();
-               // Initialisation.newtStep(newOrder);
+                //show menu
+                Order order = new Order();
+                order.showAbilities();
 
             }
             catch (NullPointerException e){
@@ -67,7 +65,8 @@ public class Customer extends Human implements User{
             }
         }
         if (indexOfAbility==2){
-
+            //add to order
         }
+
     }
 }

@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by j on 21.10.16.
  */
-public class Manager extends Human implements User {
+public class Manager extends Person implements User {
 
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
 

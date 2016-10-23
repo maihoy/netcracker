@@ -5,7 +5,7 @@ import java.util.GregorianCalendar;
 /**
  * Created by j on 19.10.16.
  */
-public abstract class Human {
+public abstract class Person {
     protected String firstName;
     protected String lastName;
     protected GregorianCalendar birthDate;

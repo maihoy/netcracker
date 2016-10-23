@@ -27,6 +27,9 @@ public class Order implements User{
     public Order() {
         this.orderList = orderList;
         this.abilities.put(1,"Show menu");
+        this.abilities.put(2,"Add dish to order");
+        this.abilities.put(3,"Show your order");
+        this.abilities.put(4,"How much is it?");
     }
 
     @Override
@@ -61,6 +64,19 @@ public class Order implements User{
 
     @Override
     public void executeAbility(int indexOfAbility) {
-
+        if(indexOfAbility==1){
+            //show menu
+            Menu menu=new Menu();
+            menu.viewMenu();
+        }
+        if (indexOfAbility==2){
+            //add to order
+        }
+        if (indexOfAbility==3){
+            //show oder
+        }
+        if (indexOfAbility==4){
+            //cost
+        }
     }
 }

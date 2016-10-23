@@ -10,7 +10,7 @@ import java.util.Map;
 /**
  * Created by j on 19.10.16.
  */
-public class Waiter extends Human implements User{
+public class Waiter extends Person implements User{
 
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
     private float experiance;
