@@ -1,5 +1,7 @@
 package com.makarevich.beans;
 
+import com.makarevich.enums.MenuItems;
+
 import java.util.ListIterator;
 
 /**
@@ -36,7 +38,7 @@ public class Bill extends Order {
     }
 
     public float calcBill(){
-        ListIterator<Order> lit =orderList.listIterator();
+        ListIterator<MenuItems> lit =orderList.listIterator();
         while (lit.hasNext()){
            // bill =lit.next().orderList
         }

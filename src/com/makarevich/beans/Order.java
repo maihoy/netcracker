@@ -1,6 +1,9 @@
 package com.makarevich.beans;
 
-import java.awt.*;
+import com.makarevich.enums.MenuItems;
+import com.makarevich.tools.Operations;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,22 +13,23 @@ import java.util.Map;
  */
 public class Order implements User{
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
-    public List<Order> orderList ;
+    public List<MenuItems> orderList = new ArrayList<MenuItems>();
+    public static int orderNum;
 
-    public List<Order> getOrderList() {
+    private Menu menu=new Menu();
+
+    public List<MenuItems> getOrderList() {
         return orderList;
     }
 
-    public void setOrderList(List<Order> orderList) {
+    public void setOrderList(List<MenuItems> orderList) {
         this.orderList = orderList;
     }
 
-    public void addOrderItem(int indexOfItem ){
 
-    }
 
     public Order() {
-        this.orderList = orderList;
+
         this.abilities.put(1,"Show menu");
         this.abilities.put(2,"Add dish to order");
         this.abilities.put(3,"Show your order");
@@ -66,17 +70,46 @@ public class Order implements User{
     public void executeAbility(int indexOfAbility) {
         if(indexOfAbility==1){
             //show menu
-            Menu menu=new Menu();
             menu.viewMenu();
         }
-        if (indexOfAbility==2){
+        if (indexOfAbility==2) {
             //add to order
+            menu.viewMenu();
+            back:
+            while (true) {
+                int indexOfDish = Operations.inputNum();
+                if (indexOfDish == 0) {
+                    break;
+                } else {
+                    orderList.add((MenuItems.menuItems(menu.getPositions().get(indexOfDish-1).getName())));
+                    continue back;
+                }
+            }
         }
         if (indexOfAbility==3){
-            //show oder
+            if(orderList.isEmpty()){
+                System.out.println("No order");
+                System.out.println();
+            }else {
+                for (MenuItems items: orderList) {
+                    System.out.println(items.getName()+" "+items.getCost()+"$");
+                }
+                System.out.println();
+            }
         }
         if (indexOfAbility==4){
             //cost
+            int cost = 0;
+            if(orderList.isEmpty()){
+                System.out.println("No order");
+                System.out.println();
+            }else {
+                for (MenuItems items: orderList) {
+                    cost+=items.getCost();
+                }
+                System.out.println("Your order's cost is "+cost+"$");
+                System.out.println();
+            }
         }
     }
 }

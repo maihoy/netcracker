@@ -47,5 +47,12 @@ public enum MenuItems {
 
     }
 
-
+    public static MenuItems menuItems(String name) {
+        for (MenuItems items : values()) {
+            if (items.getName() == name) {
+                return items;
+            }
+        }
+        throw new IllegalArgumentException(String.valueOf(name));
+    }
 }

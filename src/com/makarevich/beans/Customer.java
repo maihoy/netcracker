@@ -1,6 +1,8 @@
 package com.makarevich.beans;
 
 
+import com.makarevich.tools.Initialisation;
+
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -54,18 +56,12 @@ public class Customer extends Person implements User{
     @Override
     public void executeAbility(int indexOfAbility) {
         if(indexOfAbility==1){
-            try {
-                //show menu
+                //create order
                 Order order = new Order();
-                order.showAbilities();
-
-            }
-            catch (NullPointerException e){
-                System.out.println("No orders");
-            }
+                Initialisation.newtStep(order);
         }
         if (indexOfAbility==2){
-            //add to order
+            //pay
         }
 
     }

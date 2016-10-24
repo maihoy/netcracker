@@ -8,12 +8,12 @@ import java.util.*;
 
 public class Initialisation {
     public static List<Order> orders;
+    private static User  currentUser;
 
     private Initialisation(){
 
     }
 
-    private static User  currentUser;
 
     public static Manager createManager(){
         return  new Manager("Imja","Familija",new GregorianCalendar(1976,3,12));

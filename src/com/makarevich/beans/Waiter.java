@@ -13,7 +13,7 @@ import java.util.Map;
 public class Waiter extends Person implements User{
 
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
-    private float experiance;
+    private float experience;
     private Restaurant restaurant;
     private List<Order> orders;
     private Order currentOrder;
@@ -34,12 +34,12 @@ public class Waiter extends Person implements User{
         this.orders = orders;
     }
 
-    public float getExperiance() {
-        return experiance;
+    public float getExperience() {
+        return experience;
     }
 
-    public void setExperiance(float experiance) {
-        this.experiance = experiance;
+    public void setExperience(float experience) {
+        this.experience = experience;
     }
 
     public Restaurant getRestaurant() {        return restaurant;    }
@@ -49,11 +49,11 @@ public class Waiter extends Person implements User{
     }
 
     public Waiter(String firstName, String lastName,
-                  GregorianCalendar birthDate, float experiance) {
+                  GregorianCalendar birthDate, float experience) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
-        this.experiance = experiance;
+        this.experience = experience;
         this.abilities.put(1,"Take order");
         this.abilities.put(2,"Create restaurant bill");
     }

@@ -12,9 +12,9 @@ import java.util.List;
  */
 public class Menu {
 
-     List<MenuItems> positions= new ArrayList<MenuItems>(EnumSet.allOf(MenuItems.class));
+    static List<MenuItems> positions= new ArrayList<MenuItems>(EnumSet.allOf(MenuItems.class));
 
-    public  List<MenuItems> getPositions() {
+    public static List<MenuItems> getPositions() {
         return positions;
     }
 
@@ -29,10 +29,12 @@ public class Menu {
         posCount--;
         int i=0;
 
-        while (i<= posCount) {
 
+        while (i<= posCount) {
             System.out.println(i+1+". "+Menu.this.getPositions().get(i).getName()+" "+Menu.this.getPositions().get(i).getCost()+"$");
             i++;
         }
+        System.out.println();
+
     }
 }
