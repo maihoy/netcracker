@@ -23,6 +23,10 @@ public class Manager extends Person implements User {
 
     }
 
+    public Manager() {
+        this.abilities.put(1,"Show all orders");
+    }
+
     @Override
     public void showAbilities() {
         for (Map.Entry<Integer,String> entry: abilities.entrySet()) {

@@ -1,6 +1,7 @@
 package com.makarevich.beans;
 
 import com.makarevich.tools.Initialisation;
+import com.makarevich.tools.Operations;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -17,6 +18,11 @@ public class Waiter extends Person implements User{
     private Restaurant restaurant;
     private List<Order> orders;
     private Order currentOrder;
+
+    public Waiter() {
+        this.abilities.put(1,"Take order");
+        this.abilities.put(2,"Create restaurant bill");
+    }
 
     public Order getCurrentOrder() {
         return currentOrder;
@@ -69,10 +75,8 @@ public class Waiter extends Person implements User{
     public void executeAbility(int indexOfAbility) {
         if (indexOfAbility==1){
             try {
-                Order newOrder = new Order();
-                currentOrder=newOrder;
-                Initialisation.orders.add(newOrder);
-                orders.add(newOrder);
+                Operations.createCustomer();
+
             }
             catch (NullPointerException e){
                 System.out.println("No orders");

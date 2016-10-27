@@ -14,7 +14,8 @@ import java.util.Map;
 public class Order implements User{
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
     public List<MenuItems> orderList = new ArrayList<MenuItems>();
-    public static int orderNum;
+    public static int orderCount;
+    private int orderNum;
 
     private Menu menu=new Menu();
 
@@ -34,6 +35,8 @@ public class Order implements User{
         this.abilities.put(2,"Add dish to order");
         this.abilities.put(3,"Show your order");
         this.abilities.put(4,"How much is it?");
+        orderCount++;
+        orderNum=orderCount;
     }
 
     @Override
@@ -79,6 +82,9 @@ public class Order implements User{
             while (true) {
                 int indexOfDish = Operations.inputNum();
                 if (indexOfDish == 0) {
+                    if(!orderList.isEmpty()){
+
+                    }
                     break;
                 } else {
                     orderList.add((MenuItems.menuItems(menu.getPositions().get(indexOfDish-1).getName())));
@@ -87,6 +93,7 @@ public class Order implements User{
             }
         }
         if (indexOfAbility==3){
+            //show order
             if(orderList.isEmpty()){
                 System.out.println("No order");
                 System.out.println();

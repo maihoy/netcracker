@@ -2,6 +2,7 @@ package com.makarevich.beans;
 
 
 import com.makarevich.tools.Initialisation;
+import com.makarevich.tools.Operations;
 
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -32,6 +33,11 @@ public class Customer extends Person implements User{
         this.order = order;
     }
 
+    public Customer(){
+        this.abilities.put(1,"Create order");
+        this.abilities.put(2,"Pay");
+    }
+
     public Customer(String firstName, String lastName,
                     GregorianCalendar birthDate, float money) {
         this.firstName = firstName;
@@ -55,6 +61,9 @@ public class Customer extends Person implements User{
 
     @Override
     public void executeAbility(int indexOfAbility) {
+
+        Operations.createCustomer();
+
         if(indexOfAbility==1){
                 //create order
                 Order order = new Order();
