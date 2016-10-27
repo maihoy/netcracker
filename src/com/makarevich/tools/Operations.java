@@ -13,7 +13,6 @@ import java.util.Scanner;
 public class Operations {
     public static  Scanner input= new Scanner(System.in);
 
-
     public  static Customer createCustomer(){
         Customer customer = new Customer();
         System.out.print("First name: ");
@@ -52,7 +51,6 @@ public class Operations {
         input = new Scanner(System.in);
         return input.next();
     }
-
 
     public static boolean isLeapYear(int year){
         if(year % 4 == 0){
@@ -143,4 +141,5 @@ public class Operations {
         }
         return 0;
     }
+
 }

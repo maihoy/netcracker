@@ -22,14 +22,10 @@ public class Menu {
         this.positions = positions;
     }
 
-
-
     public void viewMenu(){
         int posCount = Menu.this.getPositions().size();
         posCount--;
         int i=0;
-
-
         while (i<= posCount) {
             System.out.println(i+1+". "+Menu.this.getPositions().get(i).getName()+" "+Menu.this.getPositions().get(i).getCost()+"$");
             i++;

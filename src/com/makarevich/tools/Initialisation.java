@@ -1,7 +1,6 @@
 package com.makarevich.tools;
 
 import com.makarevich.beans.*;
-import com.makarevich.enums.Rating;
 
 import java.util.*;
 

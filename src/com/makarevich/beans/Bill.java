@@ -1,25 +1,13 @@
 package com.makarevich.beans;
 
-import com.makarevich.enums.MenuItems;
-
-import java.util.ListIterator;
 
 /**
  * Created by j on 19.10.16.
  */
-public class Bill extends Order {
-    private Customer customer;
+public class Bill {
     private Waiter waiter;
     private Order order;
     private float bill;
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 
     public Waiter getWaiter() {
         return waiter;
@@ -37,11 +25,26 @@ public class Bill extends Order {
         this.bill = bill;
     }
 
-    public float calcBill(){
-        ListIterator<MenuItems> lit =orderList.listIterator();
-        while (lit.hasNext()){
-           // bill =lit.next().orderList
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Bill(Waiter waiter,
+                Order order) {
+        this.waiter=waiter;
+        this.order=order;
+    }
+
+    public void out() {
+        try {
+
         }
-        return bill;
+        catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
     }
 }
