@@ -28,7 +28,21 @@ public class Order implements User{
         this.orderList = orderList;
     }
 
+    public int getOrderNum() {
+        return orderNum;
+    }
 
+    public void setOrderNum(int orderNum) {
+        this.orderNum = orderNum;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
 
     public Order(Customer customer) {
 
@@ -53,23 +67,6 @@ public class Order implements User{
             }
             System.out.println();
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Order order = (Order) o;
-
-        return orderList != null ? orderList.equals(order.orderList) : order.orderList == null;
-
-
-    }
-
-    @Override
-    public int hashCode() {
-        return orderList != null ? orderList.hashCode() : 0;
     }
 
     @Override
