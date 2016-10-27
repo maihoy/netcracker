@@ -74,15 +74,8 @@ public class Waiter extends Person implements User{
     @Override
     public void executeAbility(int indexOfAbility) {
         if (indexOfAbility==1){
-            try {
-                Operations.createCustomer();
-
-            }
-            catch (NullPointerException e){
-                System.out.println("No orders");
-            }
+            Operations.createCustomer();
         }
-
         if (indexOfAbility==2){
 
         }

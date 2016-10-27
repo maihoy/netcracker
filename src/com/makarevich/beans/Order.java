@@ -35,8 +35,22 @@ public class Order implements User{
         this.abilities.put(2,"Add dish to order");
         this.abilities.put(3,"Show your order");
         this.abilities.put(4,"How much is it?");
+        this.abilities.put(5,"Add to current order");
+        this.abilities.put(6,"Delete from current order");
         orderCount++;
         orderNum=orderCount;
+    }
+
+    public void showOrder(){
+        if(orderList.isEmpty()){
+            System.out.println("No order");
+            System.out.println();
+        }else {
+            for (MenuItems items: orderList) {
+                System.out.println(items.getName()+" "+items.getCost()+"$");
+            }
+            System.out.println();
+        }
     }
 
     @Override
@@ -82,9 +96,6 @@ public class Order implements User{
             while (true) {
                 int indexOfDish = Operations.inputNum();
                 if (indexOfDish == 0) {
-                    if(!orderList.isEmpty()){
-
-                    }
                     break;
                 } else {
                     orderList.add((MenuItems.menuItems(menu.getPositions().get(indexOfDish-1).getName())));
@@ -94,15 +105,8 @@ public class Order implements User{
         }
         if (indexOfAbility==3){
             //show order
-            if(orderList.isEmpty()){
-                System.out.println("No order");
-                System.out.println();
-            }else {
-                for (MenuItems items: orderList) {
-                    System.out.println(items.getName()+" "+items.getCost()+"$");
-                }
-                System.out.println();
-            }
+            showOrder();
+
         }
         if (indexOfAbility==4){
             //cost
@@ -116,6 +120,48 @@ public class Order implements User{
                 }
                 System.out.println("Your order's cost is "+cost+"$");
                 System.out.println();
+            }
+        }
+        if (indexOfAbility==5){
+            //add to current
+            if(orderList.isEmpty()){
+                System.out.println("Yoy must create order");
+                System.out.println();
+            }else {
+            showOrder();
+            menu.viewMenu();
+            back:
+            while (true) {
+                int indexOfDish = Operations.inputNum();
+                if (indexOfDish == 0) {
+                    break;
+                }
+                else {
+                    orderList.add((MenuItems.menuItems(menu.getPositions().get(indexOfDish-1).getName())));
+                    continue back;
+                }
+            }
+        }
+
+        }
+        if (indexOfAbility==6){
+            int num=1;
+            if(orderList.isEmpty()){
+                System.out.println("No order");
+                System.out.println();
+            }else {
+                for (MenuItems items: orderList) {
+                    System.out.println(num+" "+items.getName()+" "+items.getCost()+"$");
+                    num++;
+                }
+                System.out.println();
+                int index=Operations.inputNum();
+                if (index<=num && index>0){
+                    orderList.remove(index-1);
+                }else {
+                    System.out.println("Incorrect input");
+                }
+
             }
         }
     }

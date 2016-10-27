@@ -35,6 +35,5 @@ public class Menu {
             i++;
         }
         System.out.println();
-
     }
 }
