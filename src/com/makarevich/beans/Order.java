@@ -16,6 +16,7 @@ public class Order implements User{
     public List<MenuItems> orderList = new ArrayList<MenuItems>();
     public static int orderCount;
     private int orderNum;
+    private Customer customer;
 
     private Menu menu=new Menu();
 
@@ -29,7 +30,7 @@ public class Order implements User{
 
 
 
-    public Order() {
+    public Order(Customer customer) {
 
         this.abilities.put(1,"Show menu");
         this.abilities.put(2,"Add dish to order");
@@ -39,6 +40,7 @@ public class Order implements User{
         this.abilities.put(6,"Delete from current order");
         orderCount++;
         orderNum=orderCount;
+        this.customer= customer;
     }
 
     public void showOrder(){

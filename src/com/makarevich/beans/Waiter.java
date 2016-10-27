@@ -74,7 +74,7 @@ public class Waiter extends Person implements User{
     @Override
     public void executeAbility(int indexOfAbility) {
         if (indexOfAbility==1){
-            Operations.createCustomer();
+           Customer customer= Operations.createCustomer();
         }
         if (indexOfAbility==2){
 

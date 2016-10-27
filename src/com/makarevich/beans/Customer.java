@@ -62,11 +62,11 @@ public class Customer extends Person implements User{
     @Override
     public void executeAbility(int indexOfAbility) {
 
-        Operations.createCustomer();
+         Customer customer=Operations.createCustomer();
 
         if(indexOfAbility==1){
                 //create order
-                Order order = new Order();
+                Order order = new Order(customer);
                 Initialisation.newtStep(order);
         }
         if (indexOfAbility==2){
