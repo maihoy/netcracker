@@ -17,6 +17,7 @@ public class Waiter extends Person implements User {
     private Order currentOrder;
 
     public Waiter() {
+        super();
         this.abilities.put(1, "Take order");
         this.abilities.put(2, "Create restaurant bill");
     }
@@ -55,12 +56,46 @@ public class Waiter extends Person implements User {
 
     public Waiter(String firstName, String lastName,
                   GregorianCalendar birthDate, float experience) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.birthDate = birthDate;
+        super(firstName,lastName,birthDate);
         this.experience = experience;
         this.abilities.put(1, "Take order");
         this.abilities.put(2, "Create restaurant bill");
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Waiter)) return false;
+
+        Waiter waiter = (Waiter) o;
+
+        if (Float.compare(waiter.getExperience(), getExperience()) != 0) return false;
+        if (abilities != null ? !abilities.equals(waiter.abilities) : waiter.abilities != null) return false;
+        if (!getRestaurant().equals(waiter.getRestaurant())) return false;
+        if (getOrders() != null ? !getOrders().equals(waiter.getOrders()) : waiter.getOrders() != null) return false;
+        return getCurrentOrder() != null ? getCurrentOrder().equals(waiter.getCurrentOrder()) : waiter.getCurrentOrder() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = abilities != null ? abilities.hashCode() : 0;
+        result = 31 * result + (getExperience() != +0.0f ? Float.floatToIntBits(getExperience()) : 0);
+        result = 31 * result + getRestaurant().hashCode();
+        result = 31 * result + (getOrders() != null ? getOrders().hashCode() : 0);
+        result = 31 * result + (getCurrentOrder() != null ? getCurrentOrder().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Waiter{" +
+                "abilities=" + abilities +
+                ", experience=" + experience +
+                ", restaurant=" + restaurant +
+                ", orders=" + orders +
+                ", currentOrder=" + currentOrder +
+                '}';
     }
 
     @Override

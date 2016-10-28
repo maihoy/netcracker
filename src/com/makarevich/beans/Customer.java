@@ -48,8 +48,34 @@ public class Customer extends Person implements User{
         this.abilities.put(2,"Pay");
     }
 
-    private void createOrder(){
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "abilities=" + abilities +
+                ", money=" + money +
+                ", order=" + order +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+
+        Customer customer = (Customer) o;
+
+        if (Float.compare(customer.getMoney(), getMoney()) != 0) return false;
+        if (abilities != null ? !abilities.equals(customer.abilities) : customer.abilities != null) return false;
+        return getOrder() != null ? getOrder().equals(customer.getOrder()) : customer.getOrder() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = abilities != null ? abilities.hashCode() : 0;
+        result = 31 * result + (getMoney() != +0.0f ? Float.floatToIntBits(getMoney()) : 0);
+        result = 31 * result + (getOrder() != null ? getOrder().hashCode() : 0);
+        return result;
     }
 
     @Override

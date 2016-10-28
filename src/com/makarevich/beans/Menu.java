@@ -22,6 +22,14 @@ public class Menu {
         this.positions = positions;
     }
 
+    public Menu() {
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     public void viewMenu(){
         int posCount = Menu.this.getPositions().size();
         posCount--;

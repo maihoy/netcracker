@@ -1,6 +1,7 @@
 package com.makarevich.tools;
 
 import com.makarevich.beans.*;
+import com.makarevich.beans.Manager;
 
 import java.util.*;
 

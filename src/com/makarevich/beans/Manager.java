@@ -1,17 +1,15 @@
 package com.makarevich.beans;
 
-import com.makarevich.tools.Initialisation;
-
 import java.util.GregorianCalendar;
 import java.util.HashMap;
-import java.util.ListIterator;
 import java.util.Map;
 
 /**
  * Created by j on 21.10.16.
  */
-public class Manager extends Person implements User {
+public class Manager extends Person implements User{
 
+    private final ManagerUtil managerUtil = new ManagerUtil(this);
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
 
     public Manager(String firstName, String lastName,
@@ -27,23 +25,46 @@ public class Manager extends Person implements User {
         this.abilities.put(1,"Show all orders");
     }
 
+    public Map<Integer, String> getAbilities() {
+        return abilities;
+    }
+
+    public void setAbilities(Map<Integer, String> abilities) {
+        this.abilities = abilities;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Manager)) return false;
+
+        Manager manager = (Manager) o;
+
+        return abilities != null ? abilities.equals(manager.abilities) : manager.abilities == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return abilities != null ? abilities.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Manager{" +
+                "abilities=" + abilities +
+                '}';
+    }
+
+
+
     @Override
     public void showAbilities() {
-        for (Map.Entry<Integer,String> entry: abilities.entrySet()) {
-            System.out.println(entry.getKey()+". "+entry.getValue());
-        }
+        managerUtil.showAbilities();
     }
 
     @Override
     public void executeAbility(int indexOfAbility) {
-        try {
-            ListIterator<Order> iterator=Initialisation.orders.listIterator();
-            while(iterator.hasNext()){
-                System.out.println(iterator.next());
-            }
-        }catch (NullPointerException e){
-            System.out.println("No orders");
-        }
-
+        managerUtil.executeAbility(indexOfAbility);
     }
 }
