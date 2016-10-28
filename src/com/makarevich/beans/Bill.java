@@ -11,7 +11,7 @@ import java.util.List;
  * Created by j on 19.10.16.
  */
 public class Bill {
-    private final BillUtil billUtil = new BillUtil(this);
+
     private Waiter waiter;
     private Order order;
     private float bill;

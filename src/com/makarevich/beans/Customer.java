@@ -10,7 +10,6 @@ import java.util.GregorianCalendar;
  */
 public class Customer extends Person {
 
-    private final CustomerUtil customerUtil = new CustomerUtil(this);
     private float money;
     private Order order;
 
@@ -29,10 +28,6 @@ public class Customer extends Person {
 
     public void setOrder(Order order) {
         this.order = order;
-    }
-
-    public CustomerUtil getCustomerUtil() {
-        return customerUtil;
     }
 
     public Customer(){
@@ -55,8 +50,6 @@ public class Customer extends Person {
         Customer customer = (Customer) o;
 
         if (Float.compare(customer.getMoney(), getMoney()) != 0) return false;
-        if (customerUtil != null ? !customerUtil.equals(customer.customerUtil) : customer.customerUtil != null)
-            return false;
         return getOrder() != null ? getOrder().equals(customer.getOrder()) : customer.getOrder() == null;
 
     }
@@ -64,7 +57,6 @@ public class Customer extends Person {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (customerUtil != null ? customerUtil.hashCode() : 0);
         result = 31 * result + (getMoney() != +0.0f ? Float.floatToIntBits(getMoney()) : 0);
         result = 31 * result + (getOrder() != null ? getOrder().hashCode() : 0);
         return result;
@@ -73,8 +65,7 @@ public class Customer extends Person {
     @Override
     public String toString() {
         return "Customer{" +
-                "customerUtil=" + customerUtil +
-                ", money=" + money +
+                "money=" + money +
                 ", order=" + order +
                 '}';
     }

@@ -33,7 +33,7 @@ public class CustomerUtil implements User {
 
     @Override
     public void showAbilities() {
-        for (Map.Entry<Integer, String> entry : CustomerUtil.this.getAbilities().entrySet()) {
+        for (Map.Entry<Integer, String> entry : this.abilities.entrySet()) {
             System.out.println(entry.getKey() + ". " + entry.getValue());
         }
     }

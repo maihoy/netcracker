@@ -32,7 +32,7 @@ public class ManagerUtil implements User {
 
     @Override
     public void showAbilities() {
-        for (Map.Entry<Integer, String> entry : ManagerUtil.this.getAbilities().entrySet()) {
+        for (Map.Entry<Integer, String> entry : this.abilities.entrySet()) {
             System.out.println(entry.getKey() + ". " + entry.getValue());
         }
     }

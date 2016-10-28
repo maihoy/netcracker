@@ -62,4 +62,37 @@ public class Restaurant {
     public void removeWaiter(Waiter waiter){
         waiters.remove(waiter);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Restaurant)) return false;
+
+        Restaurant that = (Restaurant) o;
+
+        if (getName() != null ? !getName().equals(that.getName()) : that.getName() != null) return false;
+        if (getRating() != that.getRating()) return false;
+        if (getMenu() != null ? !getMenu().equals(that.getMenu()) : that.getMenu() != null) return false;
+        return getWaiters() != null ? getWaiters().equals(that.getWaiters()) : that.getWaiters() == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getName() != null ? getName().hashCode() : 0;
+        result = 31 * result + (getRating() != null ? getRating().hashCode() : 0);
+        result = 31 * result + (getMenu() != null ? getMenu().hashCode() : 0);
+        result = 31 * result + (getWaiters() != null ? getWaiters().hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Restaurant{" +
+                "name='" + name + '\'' +
+                ", rating=" + rating +
+                ", menu=" + menu +
+                ", waiters=" + waiters +
+                '}';
+    }
 }

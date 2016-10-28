@@ -29,7 +29,7 @@ public class WaiterUtil implements User {
 
     @Override
     public void showAbilities() {
-        for (Map.Entry<Integer, String> entry : WaiterUtil.this.getAbilities().entrySet()) {
+        for (Map.Entry<Integer, String> entry : this.abilities.entrySet()) {
             System.out.println(entry.getKey() + ". " + entry.getValue());
         }
     }

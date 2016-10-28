@@ -14,7 +14,6 @@ import java.util.List;
 public class Menu {
 
     static List<MenuItems> positions= new ArrayList<MenuItems>(EnumSet.allOf(MenuItems.class));
-    private final MenuUtil menuUtil = new MenuUtil(this);
 
     public static List<MenuItems> getPositions() {
         return positions;

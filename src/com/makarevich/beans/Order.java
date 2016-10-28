@@ -10,7 +10,6 @@ import java.util.List;
  * Created by j on 19.10.16.
  */
 public class Order{
-    private final OrderUtil orderUtil = new OrderUtil(this);
     public List<MenuItems> orderList = new ArrayList<MenuItems>();
     public static int orderCount;
     private int orderNum;
@@ -65,10 +64,6 @@ public class Order{
         this.menu = menu;
     }
 
-    public OrderUtil getOrderUtil() {
-        return orderUtil;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,7 +72,6 @@ public class Order{
         Order order = (Order) o;
 
         if (getOrderNum() != order.getOrderNum()) return false;
-        if (orderUtil != null ? !orderUtil.equals(order.orderUtil) : order.orderUtil != null) return false;
         if (getOrderList() != null ? !getOrderList().equals(order.getOrderList()) : order.getOrderList() != null)
             return false;
         if (getCustomer() != null ? !getCustomer().equals(order.getCustomer()) : order.getCustomer() != null)
@@ -88,8 +82,7 @@ public class Order{
 
     @Override
     public int hashCode() {
-        int result = orderUtil != null ? orderUtil.hashCode() : 0;
-        result = 31 * result + (getOrderList() != null ? getOrderList().hashCode() : 0);
+        int result = getOrderList() != null ? getOrderList().hashCode() : 0;
         result = 31 * result + getOrderNum();
         result = 31 * result + (getCustomer() != null ? getCustomer().hashCode() : 0);
         result = 31 * result + (getMenu() != null ? getMenu().hashCode() : 0);
@@ -99,8 +92,7 @@ public class Order{
     @Override
     public String toString() {
         return "Order{" +
-                "orderUtil=" + orderUtil +
-                ", orderList=" + orderList +
+                "orderList=" + orderList +
                 ", orderNum=" + orderNum +
                 ", customer=" + customer +
                 ", menu=" + menu +

@@ -9,8 +9,6 @@ import java.util.*;
  */
 public class Waiter extends Person  {
 
-    private final WaiterUtil waiterUtil = new WaiterUtil(this);
-
     private float experience;
     private Restaurant restaurant;
     private List<Order> orders = new ArrayList<Order>();
@@ -59,6 +57,16 @@ public class Waiter extends Person  {
     }
 
     @Override
+    public String toString() {
+        return "Waiter{" +
+                "experience=" + experience +
+                ", restaurant=" + restaurant +
+                ", orders=" + orders +
+                ", currentOrder=" + currentOrder +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Waiter)) return false;
@@ -67,7 +75,6 @@ public class Waiter extends Person  {
         Waiter waiter = (Waiter) o;
 
         if (Float.compare(waiter.getExperience(), getExperience()) != 0) return false;
-        if (waiterUtil != null ? !waiterUtil.equals(waiter.waiterUtil) : waiter.waiterUtil != null) return false;
         if (getRestaurant() != null ? !getRestaurant().equals(waiter.getRestaurant()) : waiter.getRestaurant() != null)
             return false;
         if (getOrders() != null ? !getOrders().equals(waiter.getOrders()) : waiter.getOrders() != null) return false;
@@ -78,7 +85,6 @@ public class Waiter extends Person  {
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (waiterUtil != null ? waiterUtil.hashCode() : 0);
         result = 31 * result + (getExperience() != +0.0f ? Float.floatToIntBits(getExperience()) : 0);
         result = 31 * result + (getRestaurant() != null ? getRestaurant().hashCode() : 0);
         result = 31 * result + (getOrders() != null ? getOrders().hashCode() : 0);
@@ -86,15 +92,5 @@ public class Waiter extends Person  {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "Waiter{" +
-                "waiterUtil=" + waiterUtil +
-                ", experience=" + experience +
-                ", restaurant=" + restaurant +
-                ", orders=" + orders +
-                ", currentOrder=" + currentOrder +
-                '}';
-    }
 }
 

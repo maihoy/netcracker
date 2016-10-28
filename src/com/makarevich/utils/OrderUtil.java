@@ -45,7 +45,7 @@ public class OrderUtil implements User {
 
     @Override
     public void showAbilities() {
-        for (Map.Entry<Integer, String> entry : OrderUtil.this.getAbilities().entrySet()) {
+        for (Map.Entry<Integer, String> entry : this.abilities.entrySet()) {
             System.out.println(entry.getKey() + ". " + entry.getValue());
         }
 
