@@ -2,13 +2,17 @@ package com.makarevich.tools;
 
 import com.makarevich.beans.*;
 import com.makarevich.beans.Manager;
+import com.makarevich.interfaces.User;
+import com.makarevich.utils.CustomerUtil;
+import com.makarevich.utils.ManagerUtil;
+import com.makarevich.utils.WaiterUtil;
 
 import java.util.*;
 
 
 public class Initialisation {
     public static List<Order> orders;
-    private static User  currentUser;
+    private static User currentUser;
 
     private Initialisation(){
 
@@ -39,15 +43,15 @@ public class Initialisation {
 
                 case 1:
                     Waiter waiter =new Waiter();
-                    newtStep(waiter);
+                    newtStep(new WaiterUtil(waiter));
                     break;
                 case 2:
                     Customer customer =new Customer();
-                    newtStep(customer);
+                    newtStep(new CustomerUtil(customer));
                     break;
                 case 3:
                     Manager manager= new Manager();
-                    newtStep(manager);
+                    newtStep(new ManagerUtil(manager));
                     break;
                 case 0:
                     System.out.println("Finished!");

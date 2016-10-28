@@ -2,6 +2,7 @@ package com.makarevich.beans;
 
 
 import com.makarevich.enums.MenuItems;
+import com.makarevich.utils.MenuUtil;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -13,6 +14,7 @@ import java.util.List;
 public class Menu {
 
     static List<MenuItems> positions= new ArrayList<MenuItems>(EnumSet.allOf(MenuItems.class));
+    private final MenuUtil menuUtil = new MenuUtil(this);
 
     public static List<MenuItems> getPositions() {
         return positions;
@@ -25,19 +27,4 @@ public class Menu {
     public Menu() {
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    public void viewMenu(){
-        int posCount = Menu.this.getPositions().size();
-        posCount--;
-        int i=0;
-        while (i<= posCount) {
-            System.out.println(i+1+". "+Menu.this.getPositions().get(i).getName()+" "+Menu.this.getPositions().get(i).getCost()+"$");
-            i++;
-        }
-        System.out.println();
-    }
 }

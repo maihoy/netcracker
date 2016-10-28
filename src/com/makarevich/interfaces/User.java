@@ -1,4 +1,4 @@
-package com.makarevich.beans;
+package com.makarevich.interfaces;
 
 /**
  * Created by j on 21.10.16.

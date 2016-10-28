@@ -1,70 +1,54 @@
 package com.makarevich.beans;
 
+import com.makarevich.utils.ManagerUtil;
+
 import java.util.GregorianCalendar;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by j on 21.10.16.
  */
-public class Manager extends Person implements User{
+public class Manager extends Person {
 
     private final ManagerUtil managerUtil = new ManagerUtil(this);
-    private Map<Integer,String> abilities = new HashMap<Integer,String>();
+
 
     public Manager(String firstName, String lastName,
                     GregorianCalendar birthDate) {
-        this.firstName = firstName;
-        this.lastName =lastName;
-        this.birthDate= birthDate;
-        this.abilities.put(1,"Show all orders");
-
+        super(firstName, lastName, birthDate);
     }
 
     public Manager() {
-        this.abilities.put(1,"Show all orders");
     }
 
-    public Map<Integer, String> getAbilities() {
-        return abilities;
+    public ManagerUtil getManagerUtil() {
+        return managerUtil;
     }
 
-    public void setAbilities(Map<Integer, String> abilities) {
-        this.abilities = abilities;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Manager)) return false;
+        if (!super.equals(o)) return false;
 
         Manager manager = (Manager) o;
 
-        return abilities != null ? abilities.equals(manager.abilities) : manager.abilities == null;
+        return managerUtil != null ? managerUtil.equals(manager.managerUtil) : manager.managerUtil == null;
 
     }
 
     @Override
     public int hashCode() {
-        return abilities != null ? abilities.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (managerUtil != null ? managerUtil.hashCode() : 0);
+        return result;
     }
 
     @Override
     public String toString() {
         return "Manager{" +
-                "abilities=" + abilities +
+                "managerUtil=" + managerUtil +
                 '}';
     }
 
-
-
-    @Override
-    public void showAbilities() {
-        managerUtil.showAbilities();
-    }
-
-    @Override
-    public void executeAbility(int indexOfAbility) {
-        managerUtil.executeAbility(indexOfAbility);
-    }
 }

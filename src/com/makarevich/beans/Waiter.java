@@ -1,16 +1,16 @@
 package com.makarevich.beans;
 
-import com.makarevich.tools.Initialisation;
-import com.makarevich.tools.Operations;
+import com.makarevich.utils.WaiterUtil;
 
 import java.util.*;
 
 /**
  * Created by j on 19.10.16.
  */
-public class Waiter extends Person implements User {
+public class Waiter extends Person  {
 
-    private Map<Integer, String> abilities = new HashMap<Integer, String>();
+    private final WaiterUtil waiterUtil = new WaiterUtil(this);
+
     private float experience;
     private Restaurant restaurant;
     private List<Order> orders = new ArrayList<Order>();
@@ -18,8 +18,6 @@ public class Waiter extends Person implements User {
 
     public Waiter() {
         super();
-        this.abilities.put(1, "Take order");
-        this.abilities.put(2, "Create restaurant bill");
     }
 
     public Order getCurrentOrder() {
@@ -58,20 +56,20 @@ public class Waiter extends Person implements User {
                   GregorianCalendar birthDate, float experience) {
         super(firstName,lastName,birthDate);
         this.experience = experience;
-        this.abilities.put(1, "Take order");
-        this.abilities.put(2, "Create restaurant bill");
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Waiter)) return false;
+        if (!super.equals(o)) return false;
 
         Waiter waiter = (Waiter) o;
 
         if (Float.compare(waiter.getExperience(), getExperience()) != 0) return false;
-        if (abilities != null ? !abilities.equals(waiter.abilities) : waiter.abilities != null) return false;
-        if (!getRestaurant().equals(waiter.getRestaurant())) return false;
+        if (waiterUtil != null ? !waiterUtil.equals(waiter.waiterUtil) : waiter.waiterUtil != null) return false;
+        if (getRestaurant() != null ? !getRestaurant().equals(waiter.getRestaurant()) : waiter.getRestaurant() != null)
+            return false;
         if (getOrders() != null ? !getOrders().equals(waiter.getOrders()) : waiter.getOrders() != null) return false;
         return getCurrentOrder() != null ? getCurrentOrder().equals(waiter.getCurrentOrder()) : waiter.getCurrentOrder() == null;
 
@@ -79,9 +77,10 @@ public class Waiter extends Person implements User {
 
     @Override
     public int hashCode() {
-        int result = abilities != null ? abilities.hashCode() : 0;
+        int result = super.hashCode();
+        result = 31 * result + (waiterUtil != null ? waiterUtil.hashCode() : 0);
         result = 31 * result + (getExperience() != +0.0f ? Float.floatToIntBits(getExperience()) : 0);
-        result = 31 * result + getRestaurant().hashCode();
+        result = 31 * result + (getRestaurant() != null ? getRestaurant().hashCode() : 0);
         result = 31 * result + (getOrders() != null ? getOrders().hashCode() : 0);
         result = 31 * result + (getCurrentOrder() != null ? getCurrentOrder().hashCode() : 0);
         return result;
@@ -90,60 +89,12 @@ public class Waiter extends Person implements User {
     @Override
     public String toString() {
         return "Waiter{" +
-                "abilities=" + abilities +
+                "waiterUtil=" + waiterUtil +
                 ", experience=" + experience +
                 ", restaurant=" + restaurant +
                 ", orders=" + orders +
                 ", currentOrder=" + currentOrder +
                 '}';
-    }
-
-    @Override
-    public void showAbilities() {
-        for (Map.Entry<Integer, String> entry : abilities.entrySet()) {
-            System.out.println(entry.getKey() + ". " + entry.getValue());
-        }
-    }
-
-    @Override
-    public void executeAbility(int indexOfAbility) {
-        if (indexOfAbility == 1) {
-            //take order
-            Customer customer = Operations.createCustomer();
-            Order order = new Order(customer);
-            Initialisation.newtStep(order);
-            orders.add(order);
-            currentOrder= order;
-        }
-        if (indexOfAbility == 2) {
-            //create bill
-            if (!orders.isEmpty()) {
-                int posCount = orders.size();
-                posCount--;
-                int i = 0;
-                System.out.println("Choose order: ");
-                while (i <= posCount) {
-                    System.out.println(i + 1 + "." + orders.get(i));
-                    i++;
-                }
-                System.out.println();
-
-                while (true) {
-                    int indexOfOrder = Operations.inputNum();
-                    if (indexOfOrder == 0) {
-                        break;
-                    } else {
-                        Bill bill=new Bill(Waiter.this,orders.get(indexOfOrder-1));
-                        bill.out();
-                        return;
-                    }
-                }
-
-            } else {
-                System.out.println("No orders");
-            }
-
-        }
     }
 }
 

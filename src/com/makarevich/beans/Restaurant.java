@@ -51,6 +51,10 @@ public class Restaurant {
         waiter.setRestaurant(this);
     }
 
+    public void setWaiters(Set waiters) {
+        this.waiters = waiters;
+    }
+
     public Set getWaiters() {
         return waiters;
     }
