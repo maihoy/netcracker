@@ -1,8 +1,23 @@
 package com.makarevich.utils;
 
 import com.makarevich.beans.Bill;
+import com.makarevich.beans.Order;
+import com.makarevich.enums.MenuItems;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class BillUtil {
+    private InputStream inputstream;
+
+    // класс для записи в файл
+    private OutputStream outputStream;
+
+    // путь к файлу который будем читать и записывать
+    private String path="/home/j/ntcrckr/src/com/makarevich/files/output/";
+    private String fileName;
     private final Bill bill;
 
     public BillUtil(Bill bill) {
@@ -36,12 +51,28 @@ public class BillUtil {
                 '}';
     }
 
+    public void write(String st) throws IOException {
+        outputStream = new FileOutputStream(path+fileName);
+        outputStream.write(st.getBytes());
+        outputStream.close();
+    }
+
     public void out() {
         try {
+            OrderUtil orderToBill= new OrderUtil(bill.getOrder());
+            bill.setBill(orderToBill.showOrderCost());
             System.out.println("Waiter: " + bill.getWaiter().getFirstName() + " " + bill.getWaiter().getLastName());
             System.out.println("Customer: " + bill.getOrder().getCustomer().getFirstName() + " " + bill.getOrder().getCustomer().getLastName());
-            System.out.println("Order: " + bill.getOrder());
-            System.out.println("Your order's cost is " + bill.getBill() + "$");
+            System.out.println("Order: "  );
+            orderToBill.showOrder();
+            System.out.println("Total: "+bill.getBill()+"$");
+
+            fileName=bill.getOrder().getOrderNum()+"n";
+            write("Waiter: " +// bill.getWaiter().getFirstName().toString()+" "+bill.getWaiter().getFirstName().toString()+"\n"+
+            "Customer: "+ bill.getOrder().getCustomer().getFirstName() +" "+bill.getOrder().getCustomer().getLastName()+"\n"+
+            "Order: "+bill.getOrder().toString()+"\n"+
+            "Total: "+bill.getBill());
+
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }

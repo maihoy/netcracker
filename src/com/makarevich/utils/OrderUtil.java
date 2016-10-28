@@ -43,6 +43,19 @@ public class OrderUtil implements User {
         }
     }
 
+    public float showOrderCost(){
+        int cost = 0;
+        if (!order.getOrderList().isEmpty()) {
+            for (MenuItems items : order.getOrderList()) {
+                cost += items.getCost();
+            }
+        } else {
+            System.out.println("No order");
+            System.out.println();
+        }
+        return cost;
+    }
+
     @Override
     public void showAbilities() {
         for (Map.Entry<Integer, String> entry : this.abilities.entrySet()) {
@@ -80,17 +93,8 @@ public class OrderUtil implements User {
         }
         if (indexOfAbility == 4) {
             //cost
-            int cost = 0;
-            if (order.getOrderList().isEmpty()) {
-                System.out.println("No order");
-                System.out.println();
-            } else {
-                for (MenuItems items : order.getOrderList()) {
-                    cost += items.getCost();
-                }
-                System.out.println("Your order's cost is " + cost + "$");
-                System.out.println();
-            }
+            System.out.println("Your order's cost is " + showOrderCost() + "$");
+            System.out.println();
         }
         if (indexOfAbility == 5) {
             //add to current

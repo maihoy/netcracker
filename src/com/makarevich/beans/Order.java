@@ -91,11 +91,11 @@ public class Order{
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "Order: " +
                 "orderList=" + orderList +
                 ", orderNum=" + orderNum +
-                ", customer=" + customer +
-                ", menu=" + menu +
-                '}';
+                ", customer=" + customer.getFirstName()+" " +customer.getLastName()+
+                ", menu=" + menu.getPositions() +
+                '.';
     }
 }

@@ -11,8 +11,6 @@ import java.util.GregorianCalendar;
 public class Customer extends Person {
 
     private float money;
-    private Order order;
-
 
     public float getMoney() {
         return money;
@@ -22,12 +20,23 @@ public class Customer extends Person {
         this.money = money;
     }
 
-    public Order getOrder() {
-        return order;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        if (!super.equals(o)) return false;
+
+        Customer customer = (Customer) o;
+
+        return Float.compare(customer.getMoney(), getMoney()) == 0;
+
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    @Override
+    public int hashCode() {
+        int result = super.hashCode();
+        result = 31 * result + (getMoney() != +0.0f ? Float.floatToIntBits(getMoney()) : 0);
+        return result;
     }
 
     public Customer(){
@@ -42,31 +51,9 @@ public class Customer extends Person {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Customer)) return false;
-        if (!super.equals(o)) return false;
-
-        Customer customer = (Customer) o;
-
-        if (Float.compare(customer.getMoney(), getMoney()) != 0) return false;
-        return getOrder() != null ? getOrder().equals(customer.getOrder()) : customer.getOrder() == null;
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result = super.hashCode();
-        result = 31 * result + (getMoney() != +0.0f ? Float.floatToIntBits(getMoney()) : 0);
-        result = 31 * result + (getOrder() != null ? getOrder().hashCode() : 0);
-        return result;
-    }
-
-    @Override
     public String toString() {
         return "Customer{" +
                 "money=" + money +
-                ", order=" + order +
                 '}';
     }
 
