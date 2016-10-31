@@ -40,10 +40,12 @@ public class Customer extends Person {
     }
 
     public Customer(){
+        super();
     }
 
     public Customer(String firstName, String lastName,
                     GregorianCalendar birthDate, float money) {
+        super();
         this.firstName = firstName;
         this.lastName =lastName;
         this.birthDate= birthDate;

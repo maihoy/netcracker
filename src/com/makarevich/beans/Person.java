@@ -1,11 +1,12 @@
 package com.makarevich.beans;
 
+import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 /**
  * Created by j on 19.10.16.
  */
-public abstract class Person {
+public abstract class Person implements Serializable {
     protected String firstName;
     protected String lastName;
     protected GregorianCalendar birthDate;

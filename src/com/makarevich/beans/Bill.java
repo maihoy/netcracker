@@ -2,8 +2,8 @@ package com.makarevich.beans;
 
 
 import com.makarevich.enums.MenuItems;
-import com.makarevich.utils.BillUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -83,12 +83,11 @@ public class Bill {
 
     @Override
     public String toString() {
-        return "Bill{" +
-                "waiter=" + waiter +
-                ", order=" + order +
-                ", bill=" + bill +
-                ", orderList=" + orderList +
-                '}';
+        return "Bill:" +
+                "waiter=" + waiter.getFirstName() +" "+waiter.getLastName()+"\n"+
+                "order=" + order.getOrderList() +"\n"+
+                "bill=" + getBill() +
+                '.';
     }
 
 }

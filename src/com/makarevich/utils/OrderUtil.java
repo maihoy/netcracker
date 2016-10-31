@@ -2,15 +2,18 @@ package com.makarevich.utils;
 
 import com.makarevich.beans.Menu;
 import com.makarevich.beans.Order;
-import com.makarevich.interfaces.User;
+import com.makarevich.exceptions.EmptyOrderException;
+import com.makarevich.interfaces.Entity;
 import com.makarevich.enums.MenuItems;
+import com.makarevich.tools.Initialisation;
 import com.makarevich.tools.Operations;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class OrderUtil implements User {
+public class OrderUtil implements Entity {
     private final Order order;
+    private Order lastOrder;
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
 
     public Map<Integer, String> getAbilities() {
@@ -31,27 +34,22 @@ public class OrderUtil implements User {
         this.order = order;
     }
 
-    public void showOrder(){
-        if(order.getOrderList().isEmpty()){
-            System.out.println("No order");
-            System.out.println();
-        }else {
+    public void showOrder() throws  EmptyOrderException{
+        if(order.getOrderList().isEmpty())  throw new EmptyOrderException("No order");
+
             for (MenuItems items: order.getOrderList()) {
                 System.out.println(items.getName()+" "+items.getCost()+"$");
             }
             System.out.println();
-        }
     }
 
-    public float showOrderCost(){
+    public float showOrderCost() throws  EmptyOrderException{
         int cost = 0;
-        if (!order.getOrderList().isEmpty()) {
-            for (MenuItems items : order.getOrderList()) {
-                cost += items.getCost();
-            }
-        } else {
-            System.out.println("No order");
-            System.out.println();
+        if (order.getOrderList().isEmpty()) throw new EmptyOrderException("No order");
+
+        for (MenuItems items : order.getOrderList()) {
+            cost += items.getCost();
+
         }
         return cost;
     }
@@ -66,10 +64,9 @@ public class OrderUtil implements User {
 
     @Override
     public void executeAbility(int indexOfAbility) {
-        MenuUtil menuUtil=new MenuUtil(order.getMenu());
+        MenuUtil menuUtil=new MenuUtil(Initialisation.restaurant().getMenu());
         if (indexOfAbility == 1) {
             //show menu
-
             menuUtil.viewMenu();
         }
         if (indexOfAbility == 2) {
@@ -81,28 +78,48 @@ public class OrderUtil implements User {
                 if (indexOfDish == 0) {
                     break;
                 }
-                if(indexOfDish<= Menu.getPositions().size())
-                    order.getOrderList().add((MenuItems.menuItems(order.getMenu().getPositions().get(indexOfDish - 1).getName())));
+                if(indexOfDish<= Menu.getPositions().size()){
+                    order.getOrderList().add((MenuItems.menuItems(Menu.getPositions().get(indexOfDish - 1).getName())));
+                    continue back;
+                }else {
+                    System.out.println("Input less or equals to "+Menu.getPositions().size());
                     continue back;
                 }
             }
+
+            Initialisation.order=order;
+            Initialisation.orders.add(order);
+            }
         if (indexOfAbility == 3) {
             //show order
-            showOrder();
+            try {
+                showOrder();
+            } catch (EmptyOrderException e) {
+                System.out.println("No order");
+                System.out.println();
+            }
 
         }
         if (indexOfAbility == 4) {
             //cost
-            System.out.println("Your order's cost is " + showOrderCost() + "$");
+            try {
+                System.out.println("Your order's cost is " + showOrderCost() + "$");
+            } catch (EmptyOrderException e) {
+                System.out.println("No order");
+            }
             System.out.println();
         }
         if (indexOfAbility == 5) {
             //add to current
             if (order.getOrderList().isEmpty()) {
-                System.out.println("Yoy must create order");
+                System.out.println("You must create order");
                 System.out.println();
             } else {
-                showOrder();
+                try {
+                    showOrder();
+                } catch (EmptyOrderException e) {
+                    System.out.println("No order");
+                }
                 menuUtil.viewMenu();
                 back:
                 while (true) {
@@ -110,7 +127,8 @@ public class OrderUtil implements User {
                     if (indexOfDish == 0) {
                         break;
                     } else {
-                        order.getOrderList().add((MenuItems.menuItems(order.getMenu().getPositions().get(indexOfDish - 1).getName())));
+                        Initialisation.restaurant().getMenu();
+                        order.getOrderList().add((MenuItems.menuItems(Menu.getPositions().get(indexOfDish - 1).getName())));
                         continue back;
                     }
                 }
@@ -120,7 +138,7 @@ public class OrderUtil implements User {
         if (indexOfAbility == 6) {
             int num = 1;
             if (order.getOrderList().isEmpty()) {
-                System.out.println("No order");
+                System.out.println("You must create order");
                 System.out.println();
             } else {
                 for (MenuItems items : order.getOrderList()) {
@@ -134,7 +152,6 @@ public class OrderUtil implements User {
                 } else {
                     System.out.println("Incorrect input");
                 }
-
             }
         }
     }

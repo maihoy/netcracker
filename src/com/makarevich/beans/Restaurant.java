@@ -14,19 +14,26 @@ public class Restaurant {
 
     private String name;
     private Rating rating;
-    private List<MenuItems> menu;
-    private Set waiters = new HashSet();
+    private Menu menu=new Menu();
+    private Set<Waiter> waiters = new HashSet<Waiter>();
+
+    public Restaurant(String restaurant, Rating fourStar, List<MenuItems> positions) {
+    }
 
     public Restaurant(String name, Rating rating,
-                      List<MenuItems> menu) {
+                      List<MenuItems> menu,HashSet<Waiter> waiters) {
+        this.name=name;
+        this.rating=rating;
+        this.menu.setPositions(menu);
+        this.waiters=waiters;
 
     }
 
-    public List<MenuItems> getMenu() {
+    public Menu getMenu() {
         return menu;
     }
 
-    public void setMenu(List<MenuItems> menu) {
+    public void setMenu(Menu menu) {
         this.menu = menu;
     }
 
@@ -51,11 +58,11 @@ public class Restaurant {
         waiter.setRestaurant(this);
     }
 
-    public void setWaiters(Set waiters) {
+    public void setWaiters(Set<Waiter> waiters) {
         this.waiters = waiters;
     }
 
-    public Set getWaiters() {
+    public Set<Waiter> getWaiters() {
         return waiters;
     }
 
@@ -89,7 +96,7 @@ public class Restaurant {
     @Override
     public String toString() {
         return "Restaurant{" +
-                "name='" + name + '\'' +
+                "name='" + name + "\n" +
                 ", rating=" + rating +
                 ", menu=" + menu +
                 ", waiters=" + waiters +

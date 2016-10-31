@@ -1,17 +1,21 @@
 package com.makarevich.tools;
 
 import com.makarevich.beans.Customer;
+import com.makarevich.beans.Order;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.InputMismatchException;
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 /**
  * Created by j on 20.10.16.
  */
 public class Operations {
     public static  Scanner input= new Scanner(System.in);
+    private static InputStream inputStream;
+    private static OutputStream outputStream;
+
+    public static final String OUT_PATH="/home/j/ntcrckr/src/com/makarevich/files/output/";
+    public static final String IN_PATH="/home/j/ntcrckr/src/com/makarevich/files/input/";
 
     public  static Customer createCustomer(){
         Customer customer = new Customer();
@@ -142,4 +146,65 @@ public class Operations {
         return 0;
     }
 
+    public static void write(String st,String fileName) throws IOException {
+        outputStream = new FileOutputStream(OUT_PATH+fileName);
+        outputStream.write(st.getBytes());
+        outputStream.close();
+    }
+
+    public static void writeObject(List<Order> lst, String fileName){
+        try {
+            FileOutputStream fos=new FileOutputStream(IN_PATH+fileName);
+            ObjectOutputStream oos= new ObjectOutputStream(fos);
+            oos.writeObject(lst);
+            oos.flush();
+            oos.close();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+
+    }
+
+    public static List<Order> readObject(String fileName){
+        List<Order> list = null;
+        try {
+            ObjectInputStream ois=new ObjectInputStream(new FileInputStream(IN_PATH+fileName));
+            list =(List<Order>) ois.readObject();
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
+        //return o;
+        return list ;
+    }
+
+    public static void read(File path) throws IOException{
+        inputStream= new FileInputStream(path);
+        int data= inputStream.read();
+        char content = 0;
+        while (data!=-1){
+            content=(char)data;
+            data= inputStream.read();
+            System.out.print(content);
+        }
+        inputStream.close();
+        System.out.println();
+
+    }
+
+    public static void processFilesFromFolder(File folder){
+       // File folder = new File(path);
+        File[] folderEntity =folder.listFiles();
+        for (File entry: folderEntity) {
+            if (entry.isDirectory()){
+                processFilesFromFolder(entry);
+                continue;
+            }
+            System.out.println(entry.getName());
+            try {
+                read(entry.getAbsoluteFile());
+            } catch (IOException e) {
+                System.out.println("no bills");
+            }
+        }
+    }
 }

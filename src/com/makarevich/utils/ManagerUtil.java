@@ -2,19 +2,22 @@ package com.makarevich.utils;
 
 import com.makarevich.beans.Manager;
 import com.makarevich.beans.Order;
-import com.makarevich.interfaces.User;
+import com.makarevich.interfaces.Entity;
 import com.makarevich.tools.Initialisation;
+import com.makarevich.tools.Operations;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.ListIterator;
 import java.util.Map;
 
-public class ManagerUtil implements User {
+public class ManagerUtil implements Entity {
     private final Manager manager;
     private Map<Integer,String> abilities = new HashMap<Integer,String>();
 
     public ManagerUtil(Manager manager) {
         this.abilities.put(1,"Show all orders");
+        this.abilities.put(2,"Show bill");
         this.manager = manager;
     }
 
@@ -39,14 +42,19 @@ public class ManagerUtil implements User {
 
     @Override
     public void executeAbility(int indexOfAbility) {
-        try {
-            ListIterator<Order> iterator = Initialisation.orders.listIterator();
-            while (iterator.hasNext()) {
-                System.out.println(iterator.next());
+        if (indexOfAbility==1) {
+            try {
+                ListIterator<Order> iterator = Initialisation.orders.listIterator();
+                while (iterator.hasNext()) {
+                    System.out.println(iterator.next());
+                }
+            } catch (NullPointerException e) {
+                System.out.println("No orders");
             }
-        } catch (NullPointerException e) {
-            System.out.println("No orders");
         }
-
+        if (indexOfAbility==2){
+            File file= new File(Operations.OUT_PATH);
+            Operations.processFilesFromFolder(file);
+        }
     }
 }

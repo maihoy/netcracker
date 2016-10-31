@@ -3,19 +3,22 @@ package com.makarevich.beans;
 import com.makarevich.enums.MenuItems;
 import com.makarevich.utils.OrderUtil;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by j on 19.10.16.
  */
-public class Order{
-    public List<MenuItems> orderList = new ArrayList<MenuItems>();
-    public static int orderCount;
+public class Order implements Comparable<Order>, Serializable{
+
+
+    private List<MenuItems> orderList = new ArrayList<MenuItems>();
+    private static int orderCount;
     private int orderNum;
     private Customer customer;
 
-    private Menu menu=new Menu();
+
 
     public List<MenuItems> getOrderList() {
         return orderList;
@@ -56,14 +59,6 @@ public class Order{
         Order.orderCount = orderCount;
     }
 
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,9 +69,7 @@ public class Order{
         if (getOrderNum() != order.getOrderNum()) return false;
         if (getOrderList() != null ? !getOrderList().equals(order.getOrderList()) : order.getOrderList() != null)
             return false;
-        if (getCustomer() != null ? !getCustomer().equals(order.getCustomer()) : order.getCustomer() != null)
-            return false;
-        return getMenu() != null ? getMenu().equals(order.getMenu()) : order.getMenu() == null;
+        return getCustomer() != null ? getCustomer().equals(order.getCustomer()) : order.getCustomer() == null;
 
     }
 
@@ -85,7 +78,6 @@ public class Order{
         int result = getOrderList() != null ? getOrderList().hashCode() : 0;
         result = 31 * result + getOrderNum();
         result = 31 * result + (getCustomer() != null ? getCustomer().hashCode() : 0);
-        result = 31 * result + (getMenu() != null ? getMenu().hashCode() : 0);
         return result;
     }
 
@@ -95,7 +87,14 @@ public class Order{
                 "orderList=" + orderList +
                 ", orderNum=" + orderNum +
                 ", customer=" + customer.getFirstName()+" " +customer.getLastName()+
-                ", menu=" + menu.getPositions() +
                 '.';
     }
+
+    @Override
+    public int compareTo(Order o) {
+        if(this.orderNum>o.orderNum){
+            return 1;        }
+        else return -1;
+    }
+
 }

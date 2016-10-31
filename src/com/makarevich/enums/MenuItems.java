@@ -49,7 +49,7 @@ public enum MenuItems {
 
     public static MenuItems menuItems(String name) {
         for (MenuItems items : values()) {
-            if (items.getName() == name) {
+            if (items.getName().equals(name)) {
                 return items;
             }
         }

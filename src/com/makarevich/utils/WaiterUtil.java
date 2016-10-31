@@ -1,14 +1,14 @@
 package com.makarevich.utils;
 
 import com.makarevich.beans.*;
-import com.makarevich.interfaces.User;
+import com.makarevich.interfaces.Entity;
 import com.makarevich.tools.Initialisation;
 import com.makarevich.tools.Operations;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class WaiterUtil implements User {
+public class WaiterUtil implements Entity {
     private final Waiter waiter;
     private Map<Integer, String> abilities = new HashMap<Integer, String>();
 

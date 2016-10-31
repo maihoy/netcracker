@@ -1,5 +1,6 @@
 package com.makarevich.beans;
 
+import com.makarevich.enums.MenuItems;
 import com.makarevich.utils.WaiterUtil;
 
 import java.util.*;
@@ -52,7 +53,10 @@ public class Waiter extends Person  {
 
     public Waiter(String firstName, String lastName,
                   GregorianCalendar birthDate, float experience) {
-        super(firstName,lastName,birthDate);
+        super();
+        this.firstName=firstName;
+        this.lastName=lastName;
+        this.birthDate=birthDate;
         this.experience = experience;
     }
 
