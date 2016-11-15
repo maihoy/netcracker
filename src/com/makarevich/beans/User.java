@@ -76,6 +76,17 @@ public class User extends Entity {
     }
 
     @Override
+    public String toString() {
+        return "User{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", roles=" + roles +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
@@ -86,7 +97,8 @@ public class User extends Entity {
         if (!getFirstName().equals(user.getFirstName())) return false;
         if (!getLastName().equals(user.getLastName())) return false;
         if (!getPassword().equals(user.getPassword())) return false;
-        return getEmail().equals(user.getEmail());
+        if (!getEmail().equals(user.getEmail())) return false;
+        return getRoles().equals(user.getRoles());
 
     }
 
@@ -97,16 +109,8 @@ public class User extends Entity {
         result = 31 * result + getLastName().hashCode();
         result = 31 * result + getPassword().hashCode();
         result = 31 * result + getEmail().hashCode();
+        result = 31 * result + getRoles().hashCode();
         return result;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }

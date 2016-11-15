@@ -2,27 +2,25 @@ package com.makarevich.command.factory;
 
 import com.makarevich.command.ActionCommand;
 import com.makarevich.command.EmptyCommand;
-import com.makarevich.command.client.CommandEnum;
-import com.makarevich.resource.MessageManager;
+import com.makarevich.command.LoginCommand;
+import com.makarevich.constants.Parameters;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class ActionFactory {
+public enum  ActionFactory {
+  INSTANCE;
+
   public ActionCommand defineCommand(HttpServletRequest request) {
     ActionCommand current = new EmptyCommand();
-    // извлечение имени команды из запроса
-    String action = request.getParameter("command");
+    String action = request.getParameter(Parameters.COMMAND);
     if (action == null || action.isEmpty()) {
-      // если команда не задана в текущем запросе
       return current;
     }
-    // получение объекта, соответствующего команде
     try {
       CommandEnum currentEnum = CommandEnum.valueOf(action.toUpperCase());
-
       current = currentEnum.getCurrentCommand();
-    } catch (IllegalArgumentException e) {
-      request.setAttribute("wrongAction", action + MessageManager.getProperty("message.wrongaction"));
+    } catch (IllegalArgumentException | NullPointerException e) {
+      current= new LoginCommand();
     }
     return current;
   }

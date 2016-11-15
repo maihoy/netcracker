@@ -1,5 +1,5 @@
 package com.makarevich.filter;
 
-public enum ClientType {
+public enum UserType {
 GUEST, USER, ADMINISTRATOR
 }

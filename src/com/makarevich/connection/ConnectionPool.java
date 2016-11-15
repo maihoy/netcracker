@@ -12,14 +12,12 @@ import java.sql.SQLException;
 /**
  * Created by j on 4.11.16.
  */
-public class ConnectionPool {
+public enum  ConnectionPool {
+    INSTANCE;
 
-    private static InitialContext ic;
-    private static DataSource ds;
-
-
-    static {
-
+    private  InitialContext ic;
+    private  DataSource ds;
+    {
         try {
             ic = new InitialContext();
             ds = (DataSource) ic.lookup(ConfigsConstants.DATABASE_SOURCE);
@@ -29,7 +27,18 @@ public class ConnectionPool {
         }
     }
 
-    public static Connection getConnection() throws SQLException {
+    public Connection getConnection() throws SQLException {
             return ds.getConnection();
         }
+
+    public void releaseConnection(Connection connection) {
+        if(connection != null){
+            try {
+                connection.close();
+            }
+            catch (SQLException e) {
+                //PaymentSystemLogger.INSTANCE.logError(getClass(), e.getMessage());
+            }
+        }
+    }
 }

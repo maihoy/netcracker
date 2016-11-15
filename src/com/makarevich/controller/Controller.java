@@ -2,8 +2,8 @@ package com.makarevich.controller;
 
 import com.makarevich.command.ActionCommand;
 import com.makarevich.command.factory.ActionFactory;
-import com.makarevich.resource.ConfigurationManager;
-import com.makarevich.resource.MessageManager;
+import com.makarevich.constants.ConfigsConstants;
+import com.makarevich.managers.ConfigurationManager;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,25 +25,16 @@ public class Controller extends HttpServlet {
 
   private void processRequest(HttpServletRequest request, HttpServletResponse response)
           throws ServletException, IOException {
-    String page = null;
-    // определение команды, пришедшей из JSP
-    ActionFactory client = new ActionFactory();
+    String page;
+    ActionFactory client = ActionFactory.INSTANCE;
     ActionCommand command = client.defineCommand(request);
-    /*
-     * вызов реализованного метода execute() и передача параметров
-     * классу-обработчику конкретной команды
-     */
+    System.out.println(command.toString());
     page = command.execute(request);
-    // метод возвращает страницу ответа
-    // page = null; // поэксперементировать!
     if (page != null) {
       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);
-      // вызов страницы ответа на запрос
       dispatcher.forward(request, response);
     } else {
-      // установка страницы c cообщением об ошибке
-      page = ConfigurationManager.getProperty("path.page.index");
-      request.getSession().setAttribute("nullPage", MessageManager.getProperty("message.nullpage"));
+      page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.INDEX_PAGE_PATH);
       response.sendRedirect(request.getContextPath() + page);
     }
   }

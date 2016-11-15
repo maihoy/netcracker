@@ -22,9 +22,9 @@ public class ServletSecurityFilter implements Filter {
     HttpServletResponse resp = (HttpServletResponse) response;
     HttpSession session = req.getSession();
 
-    ClientType type = (ClientType) session.getAttribute("userType");
+    UserType type = (UserType) session.getAttribute("userType");
     if (type == null ) {
-      type = ClientType.GUEST;
+      type = UserType.GUEST;
       session.setAttribute("userType", type);
       RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/jsp/login.jsp");
       dispatcher.forward(req, resp);
