@@ -12,7 +12,7 @@
     <table>
         <tr>
             <td>Логин:</td>
-            <td><input type="text" name="login" value="" size="20"/></td>
+            <td><input type="text" name="email" value="" size="20"/></td>
         </tr>
         <tr>
             <td>Пароль:</td>

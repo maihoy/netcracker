@@ -4,7 +4,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <html>
 	<head>
-		<title>Регистрация</title>
+		<title>Регистрация Пользователя</title>
 	</head>
 	<body>
 		<form name="registrationForm" method="POST" action="controller">
@@ -13,30 +13,24 @@
 			<table>
 				<tr>
 					<td>Имя:</td>
-					<td><input type="text" name="firstname" value="" size="20"/></td>
+					<td><input type="text" name="firstName" value="" size="20"/></td>
 				</tr>
 				<tr>
 					<td>Фамилия:</td>
-					<td><input type="text" name="lastname" value="" size="20" /></td>
+					<td><input type="text" name="lastName" value="" size="20" /></td>
 				</tr>
 				<tr>
-					<td>Логин:</td>
-					<td><input type="text" name="login" value="" size="20"/></td>
+					<td>Почта:</td>
+					<td><input type="text" name="email" value="" size="20"/></td>
 				</tr>
 				<tr>
 					<td>Пароль:</td>
 					<td><input type="password" name="password" value="" size="20" /></td>
 				</tr>
 				<tr>
-					<td>№ Счета:</td>
-					<td><input type="text" name="accountid" value="" size="20"/></td>
-				</tr>
-				<tr>
-					<td>Валюта Счета:</td>
 					<td>
-						<input type="radio" name="currency" value="BYR" checked="checked"/>BYR
-						<input type="radio" name="currency" value="USD"/>USD
-						<input type="radio" name="currency" value="EUR"/>EUR<br/>
+						<input type="hidden" name="idRole" value="1" />
+						<input type="hidden" name="idState" value="1" />
 					</td>
 				</tr>
 			</table>			 
