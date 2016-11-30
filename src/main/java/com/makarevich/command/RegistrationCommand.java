@@ -6,21 +6,29 @@ import com.makarevich.constants.MessageConstants;
 import com.makarevich.constants.Parameters;
 import com.makarevich.dao.UserDAO;
 import com.makarevich.managers.ConfigurationManager;
+import com.makarevich.managers.LocaleManager;
 import com.makarevich.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
+import java.util.Locale;
 
 /**
  * Created by j on 18.11.16.
  */
-public class RegistrationCommand implements ActionCommand {
+public class RegistrationCommand extends ActionCommand {
     private static String firstName;
     private static String lastName;
     private static String email;
     private static String password;
     private static String role;
     private static String state;
+
+    @Override
+    public boolean checkAccess(User user) {
+        return true;
+    }
+
     @Override
     public String execute(HttpServletRequest request) {
         String page;
@@ -30,6 +38,7 @@ public class RegistrationCommand implements ActionCommand {
         password=request.getParameter(Parameters.USER_PASSWORD);
         role=request.getParameter(Parameters.USER_ROLE_ID);
         state=request.getParameter(Parameters.USER_STATE_ID);
+        Locale locale = LocaleManager.INSTANCE.resolveLocale(request);
         try{
             if(areFieldsFullStocked()){
               //  int userId = Integer.valueOf(userIdString)  ;
@@ -39,18 +48,18 @@ public class RegistrationCommand implements ActionCommand {
                        // request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getProperty(MessageConstants.SUCCESS_OPERATION));
                     }else {
                         page=ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.REGISTRATION_PAGE_PATH);
-                        request.setAttribute(Parameters.ERROR_USER_EXSISTS,MessageManager.INSTANCE.getProperty(MessageConstants.USER_EXSISTS));
+                        request.setAttribute(Parameters.ERROR_USER_EXSISTS,MessageManager.INSTANCE.getMessage(MessageConstants.USER_EXSISTS,locale));
                     }
             }else {
-                request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getProperty(MessageConstants.EMPTY_FIELDS));
+                request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getMessage(MessageConstants.EMPTY_FIELDS,locale));
                 page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.REGISTRATION_PAGE_PATH);
             }
         }catch (SQLException e) {
             page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.ERROR_PAGE_PATH);
-            request.setAttribute(Parameters.ERROR_DATABASE, MessageManager.INSTANCE.getProperty(MessageConstants.ERROR_DATABASE));
+            request.setAttribute(Parameters.ERROR_DATABASE, MessageManager.INSTANCE.getMessage(MessageConstants.ERROR_DATABASE,locale));
         }
         catch (NumberFormatException e) {
-            request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getProperty(MessageConstants.INVALID_NUMBER_FORMAT));
+            request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getMessage(MessageConstants.INVALID_NUMBER_FORMAT,locale));
             page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.REGISTRATION_PAGE_PATH);
         }
         catch(NullPointerException e){

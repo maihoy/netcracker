@@ -12,6 +12,7 @@ public enum  ActionFactory {
   public ActionCommand defineCommand(HttpServletRequest request) {
     ActionCommand current;
     String action = request.getParameter(Parameters.COMMAND);
+
     try{
       CommandEnum type = CommandEnum.valueOf(action.toUpperCase());
       current = type.getCurrentCommand();

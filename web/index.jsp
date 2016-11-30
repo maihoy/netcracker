@@ -1,11 +1,16 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" errorPage="/jsp/error/error.jsp"%>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<fmt:setLocale value="${locale}"/>
+<fmt:setBundle basename="message_en_EN"/>
 <html>
 <head>
-    <title>Авторизация</title>
+    <title><fmt:message key="login.title" /></title>
 </head>
 <body>
+<%@include file="../WEB-INF/jspf/header.jspf"%>
 <form name="loginForm" method="POST" action="controller">
     <input type="hidden" name="command" value="login" />
     Введите ваш логин и пароль: <br/>

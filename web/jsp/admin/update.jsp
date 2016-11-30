@@ -13,25 +13,25 @@
     <table>
         <tr>
             <td>Имя:</td>
-            <td><input type="text" name="firstName" value="" size="20"/></td>
+            <td><input type="text" name="firstName" value="${userToEdit.firstName}" size="20" required/></td>
         </tr>
         <tr>
             <td>Фамилия:</td>
-            <td><input type="text" name="lastName" value="" size="20" /></td>
+            <td><input type="text" name="lastName" value="${userToEdit.lastName}" size="20" required /></td>
         </tr>
         <tr>
             <td>Почта:</td>
-            <td><input type="text" name="email" value="${user.email}" size="20" disabled /></td>
+            <td><input type="text" name="email" value="${userToEdit.email}" size="20" readonly /></td>
         </tr>
         <tr>
             <td>Пароль:</td>
-            <td><input type="password" name="password" value="" size="20" /></td>
+            <td><input type="password" name="password" value="" size="20" required /></td>
         </tr>
         <tr>
             <td>Role:</td>
             <td>
-                <select name="idRole">
-                    <option value="3">ADMIN</option>
+                <select name="idRole"  >
+                    <option  value="3">ADMIN</option>
                     <option value="2">WAITER</option>
                     <option value="1">USER</option>
                 </select>

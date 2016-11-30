@@ -12,6 +12,10 @@ public class ColumnNames {
     public static final String MENU_ID="id";
 
     public static final String ORDER_ID="id";
+    public static final String ORDER_DISH_ID="DISH_id";
+    public static final String ORDER_STATE_ID="STATE_id";
+    public static final String ORDER_USER_ID="USER_id";
+
 
     public static final String STATE_ID="id";
     public static final String STATE_STATE="state";

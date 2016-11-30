@@ -5,7 +5,7 @@
 		<title>Ошибка</title>
 	</head>
 	<body>
-		Извините, но в данный момент сервис не доступен: <br/>
+		В данный момент сервис не доступен <br/>
 		${errorDatabase} <br/>
 		<a href="controller?command=logout">Назад</a>
 	</body>

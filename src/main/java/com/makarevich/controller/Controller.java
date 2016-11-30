@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class Controller extends HttpServlet {
-  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     processRequest(request, response);
   }
 
@@ -26,7 +26,7 @@ public class Controller extends HttpServlet {
     String page =null;
     ActionFactory client = ActionFactory.INSTANCE;
     ActionCommand command = client.defineCommand(request);
-    System.out.println(command.toString());
+
     page = command.execute(request);
     if (page != null) {
       RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(page);

@@ -1,13 +1,11 @@
 package com.makarevich.command.admin;
 
 import com.makarevich.beans.User;
-import com.makarevich.command.ActionCommand;
+import com.makarevich.command.AdminCommand;
 import com.makarevich.constants.ConfigsConstants;
-import com.makarevich.constants.MessageConstants;
 import com.makarevich.constants.Parameters;
 import com.makarevich.dao.UserDAO;
 import com.makarevich.managers.ConfigurationManager;
-import com.makarevich.managers.MessageManager;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
@@ -15,7 +13,7 @@ import java.sql.SQLException;
 /**
  * Created by j on 22.11.16.
  */
-public class UpdateUserCommand implements ActionCommand {
+public class UpdateUserCommand extends AdminCommand {
     private static String firstName;
     private static String lastName;
     private static String email;
@@ -34,11 +32,9 @@ public class UpdateUserCommand implements ActionCommand {
         try {
             if(!UserDAO.INSTANCE.isNewUser(email))    {
                 update(email);
-                page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.INDEX_PAGE_PATH);
-                // request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getProperty(MessageConstants.SUCCESS_OPERATION));
+                page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.ADMIN_PAGE_PATH);
             }else {
                 page=ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.REGISTRATION_PAGE_PATH);
-                request.setAttribute(Parameters.ERROR_USER_EXSISTS, MessageManager.INSTANCE.getProperty(MessageConstants.USER_EXSISTS));
             }
         } catch (SQLException e) {
             System.out.println(e);

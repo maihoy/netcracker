@@ -4,7 +4,6 @@ import com.makarevich.beans.User;
 import com.makarevich.connection.ConnectionPool;
 import com.makarevich.constants.ColumnNames;
 import com.makarevich.constants.SqlRequests;
-import com.makarevich.enums.UserStates;
 import com.makarevich.filter.UserType;
 
 import java.sql.Connection;
@@ -118,7 +117,7 @@ public enum UserDAO implements AbstractDAO<User>{
         return user;
     }
 
-    public UserStates getUserState(String email) throws SQLException{
+   /* public UserStates getUserState(String email) throws SQLException{
         UserStates userState=null;
         Connection connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement statement = connection.prepareStatement(SqlRequests.GET_STATE_BY_EMAIL);
@@ -130,7 +129,7 @@ public enum UserDAO implements AbstractDAO<User>{
         ConnectionPool.getInstance().releaseConnection(connection);
         return userState;
     }
-
+*/
     public UserType getUserRole(String email) throws SQLException{
         UserType userType=null;
         Connection connection = ConnectionPool.getInstance().getConnection();
@@ -155,5 +154,18 @@ public enum UserDAO implements AbstractDAO<User>{
         }
         ConnectionPool.getInstance().releaseConnection(connection);
         return isNew;
+    }
+
+    public String getIdByEmail(String userEmail) throws SQLException {
+        String id = null;
+        Connection connection = ConnectionPool.getInstance().getConnection();
+        PreparedStatement statement = connection.prepareStatement(SqlRequests.GET_USER_ID_BY_NAME);
+        statement.setString(1, userEmail);
+        ResultSet result = statement.executeQuery();
+        while(result.next()){
+            id=(result.getString(ColumnNames.USER_ID));
+        }
+        ConnectionPool.getInstance().releaseConnection(connection);
+        return id;
     }
 }
