@@ -6,10 +6,11 @@ import com.makarevich.command.user.*;
 import com.makarevich.command.waiter.*;
 
 public enum CommandEnum {
-LOGIN ,LOGOUT , REGISTRATION, GOTOREGISTRATION,
+ LOGIN ,LOGOUT , REGISTRATION, GOTOREGISTRATION,
  SHOW_USERS, DELETE_USER, UPDATE_USER, GOTOUPDATE,
  SHOW_MENU, GOTOEDITDISH, UPDATE_DISH, ADD_DISH, DELETE_DISH, GOTOADD_DISH,
- SHOW_ORDER, GOADDTO_ORDER, ADDTO_ORDER, DELETE_FROM_ORDER, BACKUSER, BACKWAITER, BACKADMIN;
+ SHOW_ORDER, GOADDTO_ORDER, ADDTO_ORDER, DELETE_FROM_ORDER,
+ BACKUSER, BACKWAITER, BACKADMIN, BACK;
 
 public ActionCommand getCurrentCommand() throws  EnumConstantNotPresentException {
  switch (this){
@@ -75,6 +76,9 @@ public ActionCommand getCurrentCommand() throws  EnumConstantNotPresentException
 
   case BACKADMIN:
    return new ReturnAdminPage();
+
+  case BACK:
+   return new ReturnToIndex();
 
   default:
    throw new EnumConstantNotPresentException(this.getDeclaringClass(),this.name());

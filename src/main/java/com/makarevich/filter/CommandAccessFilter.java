@@ -24,17 +24,6 @@ public class CommandAccessFilter implements Filter {
         //blank
     }
 
-    /**
-     * Checks the user role before executing command
-     * If user doesn't have required role a 403 error
-     * page will be displayed
-     *
-     * @param req
-     * @param resp
-     * @param chain
-     * @throws ServletException
-     * @throws IOException
-     */
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
 
         ActionFactory actionFactory = ActionFactory.INSTANCE;
@@ -49,7 +38,7 @@ public class CommandAccessFilter implements Filter {
         } else{
             response.setStatus(403);
             logger.error(String.format("Access denied for %s to the following command: %s", (user != null) ? user : "anonymous user", command));
-            request.getRequestDispatcher(pathManager.getString("path.error403")).forward(req, resp);
+            request.getRequestDispatcher(pathManager.getString("path.page.error403")).forward(req, resp);
         }
     }
 

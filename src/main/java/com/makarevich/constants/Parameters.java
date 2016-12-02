@@ -33,7 +33,7 @@ public class Parameters {
     public static final String ERROR_EMPTY_CHOICE = "errorEmptyChoice";
     public static final String ERROR_EMPTY_LIST = "errorEmptyList";
     public static final String ERROR_LOGIN_OR_PASSWORD = "errorLoginOrPassword";
-    public static final String ERROR_USER_EXSISTS = "errorUserExsists";
+    public static final String ERROR_USER_EXISTS = "errorUserExists";
     public static final String OPERATION_MESSAGE = "operationMessage";
     public static final String ERROR_DISH_EXISTS = "errorDishExists";
 

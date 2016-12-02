@@ -4,7 +4,7 @@
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <fmt:setLocale value="${locale}"/>
-<fmt:setBundle basename="message_en_EN"/>
+<fmt:setBundle basename="message_ru_RU"/>
 <html>
 <head>
     <title><fmt:message key="login.title" /></title>

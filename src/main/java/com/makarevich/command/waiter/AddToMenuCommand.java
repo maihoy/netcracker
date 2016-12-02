@@ -44,8 +44,11 @@ public class AddToMenuCommand extends WaiterCommand {
             page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.ERROR_PAGE_PATH);
             request.setAttribute(Parameters.ERROR_DATABASE, MessageManager.INSTANCE.getMessage(MessageConstants.ERROR_DATABASE,locale));
         }
-        catch (NumberFormatException | NullPointerException e) {
+        catch (NumberFormatException  e) {
             request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getMessage(MessageConstants.INVALID_NUMBER_FORMAT,locale));
+            page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.DISH_ADD_PAGE_PATH);
+        }catch (NullPointerException e){
+            request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getMessage(MessageConstants.EMPTY_FIELDS,locale));
             page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.DISH_ADD_PAGE_PATH);
         }
         return page;

@@ -48,7 +48,7 @@ public class RegistrationCommand extends ActionCommand {
                        // request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getProperty(MessageConstants.SUCCESS_OPERATION));
                     }else {
                         page=ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.REGISTRATION_PAGE_PATH);
-                        request.setAttribute(Parameters.ERROR_USER_EXSISTS,MessageManager.INSTANCE.getMessage(MessageConstants.USER_EXSISTS,locale));
+                        request.setAttribute(Parameters.ERROR_USER_EXISTS,MessageManager.INSTANCE.getMessage(MessageConstants.USER_EXISTS,locale));
                     }
             }else {
                 request.setAttribute(Parameters.OPERATION_MESSAGE, MessageManager.INSTANCE.getMessage(MessageConstants.EMPTY_FIELDS,locale));

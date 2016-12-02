@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <html>
 <head>
-    <title>Dish update</title>
+    <title>Редактирование блюда</title>
 </head>
 <body>
 <form name="updateDishForm" method="POST" action="controller">
@@ -23,6 +23,7 @@
             <td></td>
         </tr>
     </table>
+    ${operationMessage}
      <br />
     <input type="submit" value="Обновить" />
     <a href="controller?command=backwaiter">Вернуться обратно</a>

@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>Все пользователи</title>
+    <title>Меню</title>
 </head>
 <body>
 <table border="1px"  title="Menu">
@@ -16,8 +16,8 @@
         <tr>
             <td><c:out value="${ dish.name }" /></td>
             <td><c:out value="${ dish.price }" /></td>
-            <td><a href="controller?command=gotoeditdish&dishId=${dish.id}">Update</a></td>
-            <td><a href="controller?command=delete_dish&dishId=${dish.id}">Delete</a></td>
+            <td><a href="controller?command=gotoeditdish&dishId=${dish.id}">Изменить</a></td>
+            <td><a href="controller?command=delete_dish&dishId=${dish.id}">Удалить</a></td>
         </tr>
     </c:forEach>
 </table>

@@ -9,7 +9,7 @@
 <h2>${user.firstName} ${user.lastName}</h2>
 <h3>Вы вошли в систему</h3>
 <h4>Выберите операцию:</h4>
-<a href="controller?command=show_menu">Edit Menu</a> <br/>
+<a href="controller?command=show_menu">Редактировать меню</a> <br/>
 <a href="controller?command=logout">Выйти из системы</a> <br/>
 </body>
 </html>

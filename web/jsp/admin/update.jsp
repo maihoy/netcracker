@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <html>
 <head>
-    <title>update</title>
+    <title>Редактирование пользователя</title>
 </head>
 <body>
 <form name="updateUserForm" method="POST" action="controller">
@@ -20,7 +20,7 @@
             <td><input type="text" name="lastName" value="${userToEdit.lastName}" size="20" required /></td>
         </tr>
         <tr>
-            <td>Почта:</td>
+            <td>Почта/Логин:</td>
             <td><input type="text" name="email" value="${userToEdit.email}" size="20" readonly /></td>
         </tr>
         <tr>

@@ -20,7 +20,7 @@
 					<td><input type="text" name="lastName" value="" size="20" /></td>
 				</tr>
 				<tr>
-					<td>Почта:</td>
+					<td>Почта/Логин:</td>
 					<td><input type="text" name="email" value="" size="20"/></td>
 				</tr>
 				<tr>
@@ -35,7 +35,7 @@
 				</tr>
 			</table>			 
 			${operationMessage} 
-			${errorUserExsists} <br />
+			${errorUserExists} <br />
 			<input type="submit" value="Зарегистрировать" />
 			<a href="controller?command=back">Вернуться обратно</a>
 		</form>

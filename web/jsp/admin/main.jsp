@@ -8,7 +8,6 @@
 	<body>
 		<h2>${user.firstName} ${user.lastName}</h2>
 		<h4>Выберите операцию:</h4>
-		<a href="">Регистрация официанта</a>
 		<a href="controller?command=show_users">Показать всех пользователей</a> <br/>
 		<a href="controller?command=logout">Выйти из системы</a> <br/>
 	</body>

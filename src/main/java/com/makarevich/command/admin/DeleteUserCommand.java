@@ -23,7 +23,7 @@ public class DeleteUserCommand extends AdminCommand {
             User user=UserDAO.INSTANCE.getUserByEmail(email);
             if(!UserDAO.INSTANCE.isNewUser(user.getEmail()))    {
                 UserDAO.INSTANCE.deleteEntity(user.getId(),user.getEmail());
-                page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.WAITER_SHOW_ALL_DISHES_PATH);
+                page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.ADMIN_PAGE_PATH);
             }else {
                 page=ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.INDEX_PAGE_PATH);
             }
