@@ -24,6 +24,7 @@ public class Parameters {
     public static final String DISH_TO_EDIT="dishToEdit";
     public static final String DISH_LIST = "dishList";
 
+    public static final String ORDER_ID="orderId";
     public static final String ORDER = "order";
     public static final String ORDER_DISHES ="orderDishes" ;
 

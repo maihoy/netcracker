@@ -30,7 +30,7 @@ public enum UserDAO implements AbstractDAO<User>{
         statement.setLong(6, user.getId());
         statement.setString(7, user.getEmail());
         statement.executeUpdate();
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement);
 
     }
 
@@ -49,7 +49,7 @@ public enum UserDAO implements AbstractDAO<User>{
             user.setIdState(resultSet.getLong(ColumnNames.USER_USER_STATE_ID));
             list.add(user);
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement,resultSet);
         return list ;
     }
 
@@ -64,7 +64,7 @@ public enum UserDAO implements AbstractDAO<User>{
         statement.setLong(5,user.getIdRole());
         statement.setLong(6, user.getIdState());
         statement.executeUpdate();
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement);
     }
 
     //@Override
@@ -79,7 +79,7 @@ public enum UserDAO implements AbstractDAO<User>{
         statement.setLong(1, id);
         statement.setString(2, email);
         statement.executeUpdate();
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement);
 
     }
 
@@ -93,7 +93,7 @@ public enum UserDAO implements AbstractDAO<User>{
         if(result.next()){
             isLogIn = true;
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement, result);
         return isLogIn;
     }
 
@@ -113,7 +113,7 @@ public enum UserDAO implements AbstractDAO<User>{
             user.setIdRole(result.getLong(ColumnNames.USER_USER_ROLE_ID));
             user.setIdState(result.getLong(ColumnNames.USER_USER_STATE_ID));
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement, result);
         return user;
     }
 
@@ -139,7 +139,7 @@ public enum UserDAO implements AbstractDAO<User>{
         while (result.next()){
             userType=(UserType.valueOf(result.getString(ColumnNames.USER_ROLE_TYPE)));
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement,result);
         return userType;
     }
 
@@ -152,7 +152,7 @@ public enum UserDAO implements AbstractDAO<User>{
         if(result.next()){
             isNew = false;
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement,result);
         return isNew;
     }
 
@@ -165,7 +165,7 @@ public enum UserDAO implements AbstractDAO<User>{
         while(result.next()){
             id=(result.getString(ColumnNames.USER_ID));
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement, result);
         return id;
     }
 }

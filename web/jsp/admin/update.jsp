@@ -50,7 +50,7 @@
     ${operationMessage}
     ${errorUserExsists} <br />
     <input type="submit" value="Update" />
-    <a href="controller?command=back">Вернуться обратно</a>
+    <a href="controller?command=backadmin">Вернуться обратно</a>
 </form>
 
 

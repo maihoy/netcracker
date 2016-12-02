@@ -7,10 +7,10 @@
 		<title>Все пользователи</title>
 	</head>
 	<body>
-		<table border="1px" >
-			<tr >
-					<td >Фамилия</td>
-					<td >Имя</td>
+		<table>
+			<tr>
+				<td>Фамилия</td>
+				<td>Имя</td>
 				<td>Почта</td>
 			</tr>
 			<c:forEach var="user" items="${userList}">
@@ -26,7 +26,5 @@
 		</table>
 		<a href="controller?command=backadmin">Вернуться обратно</a>
 		<a href="controller?command=logout">Выйти из системы</a>
-
-
 	</body>
 </html>

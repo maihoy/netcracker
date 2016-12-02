@@ -28,7 +28,7 @@
     ${operationMessage}
     ${errorDishExsists} <br />
     <input type="submit" value="Добавить" />
-    <a href="controller?command=back">Вернуться обратно</a>
+    <a href="controller?command=backwaiter">Вернуться обратно</a>
 </form>
 
 

@@ -18,9 +18,9 @@ public class DeleteFromOrderCommand extends UserCommand {
     @Override
     public String execute(HttpServletRequest request) {
         String page=null;
-        String dishId=request.getParameter(Parameters.DISH_ID);
+        String orderId=request.getParameter(Parameters.ORDER_ID);
         try {
-            OrderDAO.INSTANCE.deleteByDisId(dishId);
+            OrderDAO.INSTANCE.deleteByOrderId(orderId);
             page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.USER_SHOW_ORDER_PATH);
 
         } catch (SQLException e) {

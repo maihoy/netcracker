@@ -16,12 +16,12 @@
         <tr>
             <td><c:out value="${dish.dishName}" /></td>
             <td><c:out value="${dish.dishPrice}" /></td>
-            <td><a href="controller?command=delete_from_order&dishId=${order} ">Delete</a></td>
+            <td><a href="controller?command=delete_from_order&orderId=${dish.id} ">Delete</a></td>
         </tr>
     </c:forEach>
 </table>
 <a href="controller?command=goaddto_order">Lобавить в заказ</a>
-<a href="controller?command=backadmin">Вернуться обратно</a>
+<a href="controller?command=backuser">Вернуться обратно</a>
 <a href="controller?command=logout">Выйти из системы</a>
 
 

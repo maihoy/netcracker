@@ -1,21 +1,15 @@
 package com.makarevich.command.factory;
 
 import com.makarevich.command.*;
-import com.makarevich.command.admin.DeleteUserCommand;
-import com.makarevich.command.admin.GoToUpdateCommand;
-import com.makarevich.command.admin.ShowAllUsersCommand;
-import com.makarevich.command.admin.UpdateUserCommand;
-import com.makarevich.command.user.AddToOrder;
-import com.makarevich.command.user.DeleteFromOrderCommand;
-import com.makarevich.command.user.GoAddToOrder;
-import com.makarevich.command.user.ShowOrderCommand;
+import com.makarevich.command.admin.*;
+import com.makarevich.command.user.*;
 import com.makarevich.command.waiter.*;
 
 public enum CommandEnum {
 LOGIN ,LOGOUT , REGISTRATION, GOTOREGISTRATION,
  SHOW_USERS, DELETE_USER, UPDATE_USER, GOTOUPDATE,
  SHOW_MENU, GOTOEDITDISH, UPDATE_DISH, ADD_DISH, DELETE_DISH, GOTOADD_DISH,
- SHOW_ORDER, GOADDTO_ORDER, ADDTO_ORDER, DELETE_FROM_ORDER;
+ SHOW_ORDER, GOADDTO_ORDER, ADDTO_ORDER, DELETE_FROM_ORDER, BACKUSER, BACKWAITER, BACKADMIN;
 
 public ActionCommand getCurrentCommand() throws  EnumConstantNotPresentException {
  switch (this){
@@ -72,6 +66,15 @@ public ActionCommand getCurrentCommand() throws  EnumConstantNotPresentException
 
   case DELETE_FROM_ORDER:
    return new DeleteFromOrderCommand();
+
+  case BACKUSER:
+   return new ReturnUserPage();
+
+  case BACKWAITER:
+   return new ReturnWaiterPage();
+
+  case BACKADMIN:
+   return new ReturnAdminPage();
 
   default:
    throw new EnumConstantNotPresentException(this.getDeclaringClass(),this.name());

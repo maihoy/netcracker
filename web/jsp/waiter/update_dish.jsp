@@ -25,7 +25,7 @@
     </table>
      <br />
     <input type="submit" value="Обновить" />
-    <a href="controller?command=back">Вернуться обратно</a>
+    <a href="controller?command=backwaiter">Вернуться обратно</a>
 </form>
 
 

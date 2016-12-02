@@ -22,7 +22,7 @@
     </c:forEach>
 </table>
 <a href="controller?command=gotoadd_dish">Добавить в меню</a>
-<a href="controller?command=backadmin">Вернуться обратно</a>
+<a href="controller?command=backwaiter">Вернуться обратно</a>
 <a href="controller?command=logout">Выйти из системы</a>
 
 

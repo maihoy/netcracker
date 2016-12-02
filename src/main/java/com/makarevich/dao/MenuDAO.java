@@ -31,7 +31,7 @@ public enum  MenuDAO implements AbstractDAO<Dish> {
             dish.setPrice(Double.valueOf(resultSet.getString(ColumnNames.DISH_PRICE)));
             list.add(dish);
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement, resultSet);
         return list ;
     }
 
@@ -43,7 +43,7 @@ public enum  MenuDAO implements AbstractDAO<Dish> {
         statement.setString(2, String.valueOf(entity.getPrice()));
        // statement.setString(3, String.valueOf(entity.getMenuId()));
         statement.executeUpdate();
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement);
 
     }
 
@@ -59,7 +59,7 @@ public enum  MenuDAO implements AbstractDAO<Dish> {
             dish.setName(result.getString(ColumnNames.DISH_NAME));
             dish.setPrice(result.getDouble(ColumnNames.DISH_PRICE));
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement, result);
         return dish;
     }
 
@@ -70,10 +70,10 @@ public enum  MenuDAO implements AbstractDAO<Dish> {
         statement.setString(1,name);
         ResultSet result = statement.executeQuery();
         if(result.next()){
-            ConnectionPool.getInstance().releaseConnection(connection);
+            ConnectionPool.getInstance().releaseConnection(connection, statement,result);
             return false;
         }else {
-            ConnectionPool.getInstance().releaseConnection(connection);
+            ConnectionPool.getInstance().releaseConnection(connection, statement, result);
             return true;
         }
     }
@@ -84,7 +84,7 @@ public enum  MenuDAO implements AbstractDAO<Dish> {
         PreparedStatement statement = connection.prepareStatement(SqlRequests.DELETE_DISH_BY_ID);
         statement.setString(1,dishId);
         statement.executeUpdate();
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement);
     }
 
     public void updateEntity(Dish dish) throws SQLException {
@@ -94,7 +94,7 @@ public enum  MenuDAO implements AbstractDAO<Dish> {
         statement.setString(2, String.valueOf(dish.getPrice()));
         statement.setString(3, String.valueOf(dish.getId()));
         statement.executeUpdate();
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement);
     }
 
     public String getIdByName(String dishName) throws SQLException{
@@ -106,7 +106,7 @@ public enum  MenuDAO implements AbstractDAO<Dish> {
         while(result.next()){
             id=(result.getString(ColumnNames.DISH_ID));
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement);
         return id;
     }
 }

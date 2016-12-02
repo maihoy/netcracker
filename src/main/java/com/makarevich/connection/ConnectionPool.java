@@ -6,6 +6,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -43,14 +45,15 @@ public class   ConnectionPool {
             return ds.getConnection();
         }
 
-    public void releaseConnection(Connection connection) {
-        if(connection != null){
-            try {
-                connection.close();
-            }
-            catch (SQLException e) {
-                //PaymentSystemLogger.INSTANCE.logError(getClass(), e.getMessage());
-            }
+    public void releaseConnection(Connection connection, PreparedStatement statement) {
+            try { if (statement != null) statement.close(); } catch (Exception e) {};
+            try { if (connection != null) connection.close(); } catch (Exception e) {};
         }
+
+    public void releaseConnection(Connection connection, PreparedStatement statement, ResultSet resultSet) {
+        try { if (statement != null) statement.close(); } catch (Exception e) {};
+        try { if (connection != null) connection.close(); } catch (Exception e) {};
+        try { if (resultSet != null) resultSet.close(); } catch (Exception e) {};
     }
 }
+

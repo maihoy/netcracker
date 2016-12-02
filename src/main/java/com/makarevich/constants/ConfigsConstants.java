@@ -14,8 +14,6 @@ public class ConfigsConstants {
 
     public static final String ERROR_PAGE_PATH = "path.page.error";
 
-    public static final String CLIENT_PAGE_PATH = "path.page.client";
-
     public static final String WAITER_PAGE_PATH = "path.page.waiter";
     public static final String WAITER_SHOW_ALL_DISHES_PATH = "path.page.waiter.menu";
     public static final String DISH_UPDATE_PAGE_PATH = "path.page.waiter.update_dish";
@@ -28,4 +26,5 @@ public class ConfigsConstants {
 
     public static final String USER_SHOW_ORDER_PATH = "path.page.client.order";
     public static final String USER_ADD_TO_ORDER = "path.page.client.addto_order";
+    public static final String USER_PAGE_PATH = "path.page.client";
 }

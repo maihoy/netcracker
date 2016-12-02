@@ -20,7 +20,7 @@
         </tr>
     </c:forEach>
 </table>
-<a href="controller?command=backadmin">Вернуться обратно</a>
+<a href="controller?command=backuser">Вернуться обратно</a>
 <a href="controller?command=logout">Выйти из системы</a>
 
 

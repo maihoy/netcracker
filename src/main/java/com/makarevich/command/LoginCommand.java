@@ -42,7 +42,7 @@ public class LoginCommand extends ActionCommand {
           session.setAttribute(Parameters.USER, user);
         logger.info("Successful authentication by email: " + email);
           if(UserType.USER.equals(userType)){
-              page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.CLIENT_PAGE_PATH);
+              page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.USER_PAGE_PATH);
         } else if (UserType.ADMIN.equals(userType)){
               page = ConfigurationManager.INSTANCE.getProperty(ConfigsConstants.ADMIN_PAGE_PATH);
         } else  if (UserType.WAITER.equals(userType)){

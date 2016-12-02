@@ -34,7 +34,7 @@ public enum  OrderDAO implements AbstractDAO<Order> {
                 order.setState(resultSet.getLong(ColumnNames.ORDER_STATE_ID));
                 list.add(order);
             }
-            ConnectionPool.getInstance().releaseConnection(connection);
+            ConnectionPool.getInstance().releaseConnection(connection, statement,resultSet);
             return list ;
         }
     };
@@ -54,7 +54,7 @@ public enum  OrderDAO implements AbstractDAO<Order> {
             order.setState(resultSet.getLong(ColumnNames.ORDER_STATE_ID));
             list.add(order);
         }
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement,resultSet);
         return list ;
     }
 
@@ -62,19 +62,19 @@ public enum  OrderDAO implements AbstractDAO<Order> {
     public void createEntity(Order entity) throws SQLException {
         Connection connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement statement = connection.prepareStatement(SqlRequests.ADD_TO_ORDER);
-        statement.setString(1, MenuDAO.INSTANCE.getIdByName(entity.getDishName()));
+        statement.setString(1, entity.getDishName());
         statement.setString(3, UserDAO.INSTANCE.getIdByEmail(entity.getUserEmail()));
         statement.setString(2, String.valueOf(1));
         statement.executeUpdate();
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection, statement);
 
     }
 
-    public void deleteByDisId(String dishId) throws SQLException {
+    public void deleteByOrderId(String orderId) throws SQLException{
         Connection connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement statement = connection.prepareStatement(SqlRequests.DELETE_DISH_FROM_ORDER_BY_ID);
-        statement.setString(1,dishId);
+        statement.setString(1,orderId);
         statement.executeUpdate();
-        ConnectionPool.getInstance().releaseConnection(connection);
+        ConnectionPool.getInstance().releaseConnection(connection,statement);
     }
 }
